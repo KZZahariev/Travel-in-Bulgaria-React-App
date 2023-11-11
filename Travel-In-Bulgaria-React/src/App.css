@@ -1,0 +1,17 @@
+@import url(./styles/reset.module.css);
+
+@import url(./styles/typography.module.css);
+
+@import url(./styles/layout.module.css);
+
+/* 
+#main-container {
+  border: 2px solid red;
+} */
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 5px solid red;
+    background-color: red;
+}

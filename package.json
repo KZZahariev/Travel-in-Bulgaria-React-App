@@ -1,0 +1,19 @@
+{
+  "name": "travel-in-bulgaria-react-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KZZahariev/Travel-in-Bulgaria-React-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KZZahariev/Travel-in-Bulgaria-React-App/issues"
+  },
+  "homepage": "https://github.com/KZZahariev/Travel-in-Bulgaria-React-App#readme"
+}
