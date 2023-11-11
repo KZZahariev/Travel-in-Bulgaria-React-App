@@ -11,7 +11,7 @@ export default function Home() {
                         <div className="bg-gray-500 p-8 shadow-md rounded-md w-96 my-10">
                             <div className="mb-4">
                                 <div className="text-gray-950 font-semibold text-2xl my-2">
-                                    <h3>&#10003; That's your fast and easy decision for comfortable travelling!</h3>
+                                    <h3>&#10003; That&apos;s your fast and easy decision for comfortable travelling!</h3>
                                     <h3>&#10003; With our help you alone can choose with who, when and how to go to you desired/wanted destination.</h3>
                                     <h3>&#10003; Make your ordinary and boring traveling alone in sweetly and shared adventure, make new acquaintance, why not
                                         friendships?</h3>
