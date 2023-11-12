@@ -1,15 +1,15 @@
-import Footer from "./components/core/Footer";
 import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import Footer from "./components/core/Footer";
 import Header from "./components/core/Header";
 import Home from "./components/Home";
 import About from "./components/About";
-
-import "./App.css";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
 import NewAnnouncement from "./components/announcements/new-announcement";
 import AnnouncementsList from "./components/announcements/announcements-list";
+import PageNotFound from "./components/Page-not-found";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
             <Route path="/users/profile" element={<Profile />}/>
             <Route path="/announcements" element={<AnnouncementsList />}/>
             <Route path="/add-announcement" element={<NewAnnouncement />}/>
+            <Route path="*" element={<PageNotFound />}/>
         </Routes>
 
         <Footer />
