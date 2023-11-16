@@ -23,13 +23,15 @@ function getAnnouncement(req, res, next) {
 
 function createAnnouncement(req, res, next) {
     const { from, to, price, date, seats, description } = req.body;
-    const { _id: userId } = req.user;
-    announcementModel.create({ from, to, price, date, seats, description, userId, })
-        .then(announcement => {
-            newPost(description, userId, announcement._id)
-                .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
-        })
-        .catch(next);
+    // const { _id: userId } = req.user;
+    announcementModel.create({ from, to, price, date, seats, description}) //, userId, 
+            .then(announcement => console.log(announcement))
+            .catch(next)
+        // .then(announcement => {
+        //     newPost(description, announcement._id) // userId,
+        //         .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
+        // })
+        // .catch(next);
 }
 
 function subscribe(req, res, next) {

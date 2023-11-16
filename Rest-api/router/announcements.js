@@ -6,7 +6,7 @@ const { announcementController, postController } = require('../controllers');
 // middleware that is specific to this router
 
 router.get('/', announcementController.getAnnouncements);
-router.post('/', auth(), announcementController.createAnnouncement);
+router.post('/',  announcementController.createAnnouncement); //auth()
 
 router.get('/:announcementId', announcementController.getAnnouncement);
 router.post('/:announcementId', auth(), postController.createPost);
