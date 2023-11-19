@@ -25,7 +25,7 @@
 
 const request = async (method, url, data) => {
     const options = {};
-
+    
     if (method !== "GET") {
         options.method = method;
         if (data) {
@@ -35,8 +35,9 @@ const request = async (method, url, data) => {
             options.body = JSON.stringify(data);
         }
     }
-    console.log(options);
+    console.log(url);
     const response = await fetch(url, options);
+    
     try {
         const result = await response.json();
         return result;

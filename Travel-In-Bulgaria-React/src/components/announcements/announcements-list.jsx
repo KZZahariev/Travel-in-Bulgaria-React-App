@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import * as announcementService from "../../services/announcementService";
-import AnnouncementsListItem from "./announcements-list-item/announcements-list-item";
+import AnnouncementsListItem from "./announcements-list-item/Announcements-list-item";
 
 export default function AnnouncementList() {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    announcementService
-      .getAll()
+    announcementService.getAll()
       .then((result) => setAnnouncements(result))
-      .then((result) => console.log(result));
   }, []);
 
   return (

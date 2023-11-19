@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom";
 import * as announcementService from '../../services/announcementService' 
 
 const NewAnnouncement = () => {
-    
-    // FIX PROBLEM WITH RENDERING 
 
     const navigate = useNavigate();
 
