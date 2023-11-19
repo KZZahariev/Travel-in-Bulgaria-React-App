@@ -18,10 +18,9 @@
 //         method
 //     });
 //     const result = await response.json();
-//     console.log(response);
 
 //     return result;
-// }
+// }    
 
 
 const request = async (method, url, data) => {
@@ -36,18 +35,15 @@ const request = async (method, url, data) => {
             options.body = JSON.stringify(data);
         }
     }
-
+    console.log(options);
     const response = await fetch(url, options);
-    console.log(response.json());
-
     try {
         const result = await response.json();
-        console.log(result);
         return result;
 
     } catch (error) {
         console.log(error);
-    }
+    }   
 }
 
 export const get = request.bind(null, 'GET');
