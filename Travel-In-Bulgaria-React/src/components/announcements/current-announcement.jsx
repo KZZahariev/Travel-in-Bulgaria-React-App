@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as announcementService from "../../services/announcementService"
 import ViewModeCurrentAnn from "./current-announcement/ViewModeCurrentAnnouncement";
+import EditModeCurrentAnn from "./current-announcement/EditModeCurrentAnnouncement";
 
 const CurrentAnnouncement = () => {
     const [announcement, setAnnouncement] = useState({});
@@ -16,7 +17,7 @@ const CurrentAnnouncement = () => {
     {/* ---------------------VIEW MODE----------------- */}
         {<ViewModeCurrentAnn key={announcementId} {...announcement}/>}
     {/* <!-- ----------------EDIT MODE------------- --> */}
-        
+        {<EditModeCurrentAnn key={announcementId} {...announcement} />}
     </div>
     )
 }

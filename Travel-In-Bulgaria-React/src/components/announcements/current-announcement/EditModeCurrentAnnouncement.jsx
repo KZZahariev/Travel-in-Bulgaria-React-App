@@ -1,5 +1,34 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom"
+import * as announcementService from "../../../services/announcementService"
+export default function EditModeCurrentAnn(){
 
-export default function editModeCurrentAnn(){
+    const navigate = useNavigate();
+    const { announcementId } = useParams();
+    const [ announcement, setAnnouncements ] = useState({
+        from,
+        to,
+        price,
+        date,
+        seats,
+        description,
+    });
+
+    useEffect(() => {
+        announcementService.getOne(announcementId)
+            .then(result => setAnnouncements(result))
+    }, [announcementId]);
+
+    const editAnnouncementSubmitHandler = async (values) => {
+        try {
+            await announcementService.edit(announcementId, values);
+            navigate('/announcements')
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const { values, onChange, onSubmit } = useForm
 
     return(
         <div className="min-h-screen flex items-center justify-center opacity-90">

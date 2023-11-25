@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import { Link } from "react-router-dom" 
 
 export default function ViewModeCurrentAnn({
     from,
@@ -55,10 +55,10 @@ export default function ViewModeCurrentAnn({
                 </div>
                 <ul >
                     <ul >
-                        <li className="p-2 flex flex-nowrap">
+                        <Link to={'edit/:announcementId'} className="p-2 flex flex-nowrap">
                             <button className="transform transition-all hover:scale-105 w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >Edit</button>
-                        </li>
+                        </Link>
                         <li className="p-2 flex flex-nowrap">
                             <button className="transform transition-all hover:scale-105 w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >Delete</button>

@@ -11,6 +11,7 @@ import NewAnnouncement from "./components/announcements/new-announcement";
 import AnnouncementsList from "./components/announcements/announcements-list";
 import PageNotFound from "./components/page-not-found/Page-not-found";
 import CurrentAnnouncement from "./components/announcements/current-announcement";
+import EditModeCurrentAnn from "./components/announcements/current-announcement/EditModeCurrentAnnouncement";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/announcements" element={<AnnouncementsList />}/>
             <Route path="/announcements/:announcementId" element={<CurrentAnnouncement />}/>
             <Route path="/add-announcement" element={<NewAnnouncement />}/>
+            <Route path="/edit/:announcementId" element={<EditModeCurrentAnn />}/>
             <Route path="*" element={<PageNotFound />}/>
         </Routes>
 
