@@ -14,7 +14,8 @@ export const AuthProvider = ({
     const [auth, setAuth] = usePersistedState('auth', {})
 
     const registerSubmitHandler = async (values) => {
-        const result = await authService.register(values.email, values.password);
+        console.log(`authContext: ${values.username} - ${values.email} - ${values.password} - ${values.rePassword}`);
+        const result = await authService.register(values.email, values.username,values.password, values.rePassword); //
 
         setAuth(result);
 
@@ -42,7 +43,7 @@ export const AuthProvider = ({
         registerSubmitHandler,
         loginSubmitHandler,
         logoutHandler,
-        username: auth.username,
+        username: auth.username || auth.username,
         email: auth.email,
         userId: auth.userId,
         isAuthenticated: !!auth.accessToken,

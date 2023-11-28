@@ -13,13 +13,13 @@ const removePassword = (data) => {
 }
 
 function register(req, res, next) {
-    const { tel, email, username, password, repeatPassword } = req.body;
-
-    return userModel.create({ tel, email, username, password })
-        .then((createdUser) => {
-            createdUser = bsonToJson(createdUser);
-            createdUser = removePassword(createdUser);
-
+    const { email, username, password, rePassword } = req.body; //tel
+    console.log(email, username, password, rePassword);
+    return userModel.create({ email, username, password }) //tel
+    .then((createdUser) => {
+        createdUser = bsonToJson(createdUser);
+        createdUser = removePassword(createdUser);
+        
             const token = utils.jwt.createToken({ id: createdUser._id });
             if (process.env.NODE_ENV === 'production') {
                 res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true })

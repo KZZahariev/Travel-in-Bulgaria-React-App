@@ -4,27 +4,33 @@ import { Link } from "react-router-dom"
 import AuthContext  from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 
+
+const RegisterFormKeys = {
+    Email: 'email',
+    Password: 'password',
+    RePassword: 'rePassword',
+};
+
 export default function Register() {
     const { registerSubmitHandler } = useContext(AuthContext);
     const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
-        email: '',
-        password: '',
-        rePassword: ''
-
+        [RegisterFormKeys.Email]: '', //'email' : ''//'email': '',
+        [RegisterFormKeys.Password]: '', //'password': '',
+        [RegisterFormKeys.RePassword]: '',  //'rePassword': ''
     })
 
     // const changeSubmitHandler = (e) => {
     //     setUserValue(e.target.value)
     // }
 
-      return(
+      return (
           <div className="min-h-screen flex items-center justify-center">
             <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">
               <h2 className="text-slate-100 text-2xl font-semibold mb-4">Register</h2>
               <form onSubmit={onSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="name" className="block text-gray-500 text-sm font-medium">Full Name</label>
-                  <input type="text" id="name" name="name" value={values} onChange={onChange}
+                  <label htmlFor="username" className="block text-gray-500 text-sm font-medium">Full Name</label>
+                  <input type="text" id="username" name="username" values={values[RegisterFormKeys.Email]} onChange={onChange}
                     className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"/>
                 </div>
 
@@ -38,7 +44,7 @@ export default function Register() {
 
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-gray-500 text-sm font-medium">Email</label>
-                  <input type="email" id="email" name="email" 
+                  <input type="email" id="email" name="email" values={values[RegisterFormKeys.Email]} onChange={onChange}
                     className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"/>
                 </div>
 
@@ -54,7 +60,7 @@ export default function Register() {
 
                   <div className="mb-4">
                     <label htmlFor="password" className="block text-gray-500 text-sm font-medium">Password</label>
-                    <input type="password" id="password" name="password" placeholder="**********" 
+                    <input type="password" id="password" name="password" placeholder="**********" values={values[RegisterFormKeys.Password]} onChange={onChange}
                       className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"/>
                   </div>
                   {/* <!-- Password validator --> */}
@@ -68,7 +74,7 @@ export default function Register() {
 
                   <div className="mb-4">
                     <label htmlFor="rePassword" className="block text-gray-500 text-sm font-medium">Confirm Password</label>
-                    <input type="password" id="rePassword" name="rePassword" placeholder="**********" 
+                    <input type="password" id="rePassword" name="rePassword" placeholder="**********" values={values[RegisterFormKeys.RePassword]} onChange={onChange}
                       className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"/>
                   </div>
 
