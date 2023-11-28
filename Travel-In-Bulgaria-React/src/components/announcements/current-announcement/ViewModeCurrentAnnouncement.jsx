@@ -1,14 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom" 
+import EditModeCurrentAnn from "./EditModeCurrentAnnouncement"
 
-export default function ViewModeCurrentAnn({
-    from,
-    to,
-    price,
-    date,
-    seats,
-    description,
-}) {
+export default function ViewModeCurrentAnn(announcement) {
 
     return(
         <div className="p-10 mb-12 flex-nowrap no-scrollbar flex items-center justify-center opacity-90">
@@ -23,38 +17,43 @@ export default function ViewModeCurrentAnn({
                         <li className="mr-2 mb-2">
                             <label htmlFor="from" className="block text-gray-500 text-sm font-medium">From: <span
                                     className="text-white">
-                                    {from}</span></label>
+                                    {announcement.from}</span></label>
                         </li>
                         <li className="mr-2 mb-2">
                             <label htmlFor="to" className="block text-gray-500 text-sm font-medium">To: <span
                                     className="text-white">
-                                    {to}</span></label>
+                                    {announcement.to}</span></label>
                         </li>
                         <li className="mr-7 mb-2">
                             <label htmlFor="price" className="block text-gray-500 text-sm font-medium">Price of ticket: <span
                                     className="text-white">
-                                    {price}</span></label>
+                                    {announcement.price}</span></label>
                         </li>
                         <li className="mr-7 mb-2">
                             <label htmlFor="date" className="block text-gray-500 text-sm font-medium">Date: <span
                                     className="text-white">
-                                    {date}</span></label>
+                                    {announcement.date}</span></label>
                         </li>
                         <li className="mr-7 mb-2">
                             <label htmlFor="seats" className="block text-gray-500 text-sm font-medium">Number of seats: <span
                                     className="text-white">
-                                    {seats}</span></label>
+                                    {announcement.seats}</span></label>
                         </li>
                         <li className="mr-7 mb-2">
                             <label htmlFor="description" className="block text-gray-500 text-sm font-medium">Description: <span
                                     className="text-white">
-                                    {description}</span></label>
+                                    {announcement.description}</span></label>
                         </li>
 
                     </ul>
                 </div>
                 <ul >
                     <ul >
+                        {/* <!-- ----------------TODO EDIT WITH USERID------------- --> */}
+                        {<EditModeCurrentAnn key={announcement._id} {...announcement} />}
+                        
+                        {}
+
                         <Link to={'edit/:announcementId'} className="p-2 flex flex-nowrap">
                             <button className="transform transition-all hover:scale-105 w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >Edit</button>

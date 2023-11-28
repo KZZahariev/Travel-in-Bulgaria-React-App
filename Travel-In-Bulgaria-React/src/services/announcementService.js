@@ -16,3 +16,8 @@ export const create = async (announcementData) => {
     const result = await request.post(`${baseUrl}/announcements`, announcementData);
     return result;
 }
+
+export const edit = async (announcementId, announcementData) => {
+    const result = await request.put(`${baseUrl}/announcements/${announcementId}`, announcementData);
+    return result;
+}
