@@ -16,6 +16,7 @@ import AnnouncementsList from "./components/announcements/announcements-list";
 import PageNotFound from "./components/page-not-found/Page-not-found";
 import CurrentAnnouncement from "./components/announcements/current-announcement";
 import EditModeCurrentAnn from "./components/announcements/current-announcement/EditModeCurrentAnnouncement";
+import Logout from "./components/user/Logout";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/about" element={<About />}/>
               <Route path="/login" element={<Login />}/>
               <Route path="/register" element={<Register />}/>
+              <Route path="/users/login" element={<Logout />}/>
               <Route path="/users/profile" element={<Profile />}/>
               <Route path="/announcements" element={<AnnouncementsList />}/>
               <Route path="/announcements/:announcementId" element={<CurrentAnnouncement />}/>

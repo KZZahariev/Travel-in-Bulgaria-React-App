@@ -11,32 +11,32 @@ export const AuthProvider = ({
     children
 }) => {
     const navigate = useNavigate();
-    const [auth, setAuth] = usePersistedState('auth', {})
+    const [auth, setAuth] = usePersistedState('accessToken', {}) //auth
 
     const registerSubmitHandler = async (values) => {
-        console.log(`authContext: ${values.username} - ${values.email} - ${values.password} - ${values.rePassword}`);
-        const result = await authService.register(values.email, values.username,values.password, values.rePassword); //
+        console.log(`authContext: ${values.email} - ${values.username} - ${values.password} - ${values.rePassword}`);
+        const result = await authService.register(values.email, values.username, values.password, values.rePassword); //
 
-        setAuth(result);
+        setAuth(result._id);
 
-        localStorage.setItem('accessToken', result.accessToken);
-
+        // localStorage.setItem('accessToken', result._id); //must fix accessToken!!!!!!!!!!!!!!!!!1
+        
         navigate('/')
     }
 
     const loginSubmitHandler = async (values) => {
         const result = await authService.login(values.email, values.password)
 
-        setAuth(result);
+        setAuth(result._id);
 
-        localStorage.setItem('accessToken', result.accessToken)
+        // localStorage.setItem('accessToken', result._id)
 
         navigate('/')
     };
 
     const logoutHandler = () => {
         setAuth({});
-        localStorage.removeItem('accessToken')
+        localStorage.removeItem('accessToken') 
     }
 
     const values = {

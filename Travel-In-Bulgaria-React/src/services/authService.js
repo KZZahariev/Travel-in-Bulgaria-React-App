@@ -2,19 +2,19 @@ import * as request from "../lib/request";
 
 const baseUrl = 'http://localhost:3000/api';
 
-export const register = async (username, email, password, rePassword) => {
+export const register = async (email, username, password, rePassword) => {
 
     let isPasswordsMatched = true;
-console.log(`authService: ${username} - ${email} -${password} - ${rePassword}`);
     if (password !== rePassword) {
         isPasswordsMatched = false
-        console.log('tuka si ebava maikata');
+        console.log('Password mismatch!!!!!');
         return; // or throw new error
     }
     const result = await request.post(`${baseUrl}/register`, {
-        username,
         email,
-        password
+        username,
+        password,
+        //accessToken - moje da mu podadem
     });
 
     return result; 

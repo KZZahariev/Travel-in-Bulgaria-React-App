@@ -13,8 +13,8 @@ const removePassword = (data) => {
 }
 
 function register(req, res, next) {
-    const { email, username, password, rePassword } = req.body; //tel
-    console.log(email, username, password, rePassword);
+    const { email, username, password } = req.body; //tel
+    
     return userModel.create({ email, username, password }) //tel
     .then((createdUser) => {
         createdUser = bsonToJson(createdUser);
@@ -46,6 +46,7 @@ function register(req, res, next) {
 function login(req, res, next) {
     const { email, password } = req.body;
 
+    console.log(email, password);
     userModel.findOne({ email })
         .then(user => {
             return Promise.all([user, user ? user.matchPassword(password) : false]);
