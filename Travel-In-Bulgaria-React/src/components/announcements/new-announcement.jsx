@@ -4,13 +4,18 @@ import * as announcementService from '../../services/announcementService'
 const NewAnnouncement = () => {
 
     const navigate = useNavigate();
+// TRQBVA DA OPRAVQ PRI CREATE DA VZIMA I USERID-TO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+
 
     const createAnnouncementHandler = async (e) => {
         e.preventDefault();
-
         const announcementData = Object.fromEntries(new FormData(e.currentTarget));
+        // const announcementData = Object.fromEntries(new FormData(e.currentTarget));
         try {
-            await announcementService.create(announcementData);
+            const userId = localStorage.getItem('accessToken');
+            console.log(announcementData); 
+            console.log(userId);
+            await announcementService.create(announcementData, userId);
             navigate('/announcements')
         } catch (error) {
             console.log(error);

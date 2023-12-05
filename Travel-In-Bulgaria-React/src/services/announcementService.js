@@ -12,8 +12,8 @@ export const getOne = async (announcementId) => {
     return result;
 }
 
-export const create = async (announcementData) => {
-    const result = await request.post(`${baseUrl}/announcements`, announcementData);
+export const create = async (announcementData, userId) => {
+    const result = await request.post(`${baseUrl}/announcements`, announcementData, userId);
     return result;
 }
 

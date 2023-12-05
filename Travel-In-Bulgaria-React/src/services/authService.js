@@ -30,5 +30,5 @@ export const login = async (email, password) => {
     return result;
 };
 
-export const logout = () => request.get(`${baseUrl}/users/logout`)
+export const logout = () => request.get(`${baseUrl}/logout`)
 

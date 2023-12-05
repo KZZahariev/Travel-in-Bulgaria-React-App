@@ -22,12 +22,10 @@ function getAnnouncement(req, res, next) {
 }
 
 
-//  КОГАТО НАПРАВЯ ФУНКЦИОНАЛНОСТА С ЛОГИН И РЕГ ДА ОПРАВЯ CREATE-A!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-
 function createAnnouncement(req, res, next) {
     const { from, to, price, date, seats, description } = req.body;
-    // const { _id: userId } = req.user;
-    announcementModel.create({ from, to, price, date, seats, description}) //, userId, 
+    const userId = req.headers['x-authorization'];
+    announcementModel.create({ from, to, price, date, seats, description, userId})
             .then(announcement => res.json(announcement))
             .catch(next)
         // .then(announcement => {

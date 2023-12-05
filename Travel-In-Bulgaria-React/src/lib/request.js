@@ -10,14 +10,13 @@ const buildOptions = (data) => {
     }
 
     const token = localStorage.getItem('accessToken')
-
     if(token){
-        options.header = {
+        options.headers = {
             ...options.headers,
             'X-Authorization': token
         }
     }
-
+console.log(options);
     return options;
 }
 

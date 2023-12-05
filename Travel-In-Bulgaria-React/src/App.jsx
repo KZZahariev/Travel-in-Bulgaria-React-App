@@ -29,7 +29,7 @@ function App() {
               <Route path="/about" element={<About />}/>
               <Route path="/login" element={<Login />}/>
               <Route path="/register" element={<Register />}/>
-              <Route path="/users/login" element={<Logout />}/>
+              <Route path="/logout" element={<Logout />}/>
               <Route path="/users/profile" element={<Profile />}/>
               <Route path="/announcements" element={<AnnouncementsList />}/>
               <Route path="/announcements/:announcementId" element={<CurrentAnnouncement />}/>

@@ -24,6 +24,7 @@ function register(req, res, next) {
             if (process.env.NODE_ENV === 'production') {
                 res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true })
             } else {
+                console.log(`register - ${token}`);
                 res.cookie(authCookieName, token, { httpOnly: true })
             }
             res.status(200)
@@ -46,7 +47,6 @@ function register(req, res, next) {
 function login(req, res, next) {
     const { email, password } = req.body;
 
-    console.log(email, password);
     userModel.findOne({ email })
         .then(user => {
             return Promise.all([user, user ? user.matchPassword(password) : false]);
