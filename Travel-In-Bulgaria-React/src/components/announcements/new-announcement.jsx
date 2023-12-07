@@ -1,20 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import * as announcementService from '../../services/announcementService' 
+import AuthContext from "../../contexts/authContext";
+import { useContext } from "react";
 
 const NewAnnouncement = () => {
 
     const navigate = useNavigate();
-// TRQBVA DA OPRAVQ PRI CREATE DA VZIMA I USERID-TO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-
+    const { userId } = useContext(AuthContext);
 
     const createAnnouncementHandler = async (e) => {
         e.preventDefault();
         const announcementData = Object.fromEntries(new FormData(e.currentTarget));
-        // const announcementData = Object.fromEntries(new FormData(e.currentTarget));
         try {
-            const userId = localStorage.getItem('accessToken');
-            console.log(announcementData); 
-            console.log(userId);
             await announcementService.create(announcementData, userId);
             navigate('/announcements')
         } catch (error) {

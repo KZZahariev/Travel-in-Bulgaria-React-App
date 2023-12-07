@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import * as announcementService from "../../services/announcementService";
 import AnnouncementsListItem from "./announcements-list-item/Announcements-list-item";
+// import AuthContext from "../../contexts/authContext";
 
 export default function AnnouncementList() {
   const [announcements, setAnnouncements] = useState([]);

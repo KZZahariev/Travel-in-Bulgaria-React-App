@@ -5,17 +5,16 @@ import ViewModeCurrentAnn from "./current-announcement/viewModeCurrentAnnounceme
 
 const CurrentAnnouncement = () => {
     const [announcement, setAnnouncement] = useState({});
-    const announcementId = useParams()
+    const { announcementId } = useParams()
 
     useEffect(() => {
-        announcementService.getOne(announcementId.announcementId)
+        announcementService.getOne(announcementId)
             .then((result) => setAnnouncement(result));
     }, [announcementId])
     return(
     <div>
     {/* ---------------------VIEW MODE----------------- */}
         {<ViewModeCurrentAnn key={announcementId} {...announcement}/>}
-    
     </div>
     )
 }

@@ -16,7 +16,6 @@ export const register = async (email, username, password, rePassword) => {
         password,
         //accessToken - moje da mu podadem
     });
-
     return result; 
 };
 
@@ -30,5 +29,5 @@ export const login = async (email, password) => {
     return result;
 };
 
-export const logout = () => request.get(`${baseUrl}/logout`)
+export const logout = () => request.post(`${baseUrl}/logout`)
 

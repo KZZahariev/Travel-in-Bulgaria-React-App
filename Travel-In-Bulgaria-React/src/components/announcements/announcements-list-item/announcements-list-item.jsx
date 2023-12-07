@@ -6,12 +6,13 @@ export default function AnnouncementsListItem({
     from,
     to,
     price,
+    userId
 }) {    
 
     return(
         <div className="transform transition-all hover:scale-105 p-2 mb-12 flex-nowrap no-scrollbar flex items-center justify-center">
         <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">
-                    <h2 className="text-slate-100 text-2xl font-semibold mb-4">Pesho&apos;s posted</h2>
+                    <h2 className="text-slate-100 text-2xl font-semibold mb-4">{userId.username} posted</h2>
                     <div className="mb-4">
                         <ul className="p-2 flex flex-nowrap">
                         </ul>

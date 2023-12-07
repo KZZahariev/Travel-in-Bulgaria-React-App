@@ -31,7 +31,7 @@ export default function Register() {
               <h2 className="text-slate-100 text-2xl font-semibold mb-4">Register</h2>
               <form onSubmit={onSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="username" className="block text-gray-500 text-sm font-medium">Full Name</label>
+                  <label htmlFor="username" className="block text-gray-500 text-sm font-medium">Username</label>
                   <input type="text" id="username" name="username" values={values[RegisterFormKeys.Username]} onChange={onChange}
                     className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"/>
                 </div>

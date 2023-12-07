@@ -21,3 +21,7 @@ export const edit = async (announcementId, announcementData) => {
     const result = await request.put(`${baseUrl}/announcements/${announcementId}`, announcementData);
     return result;
 }
+
+export const del = async (announcementId) => request.del(`${baseUrl}/announcements/${announcementId}/delete`);
+
+export const subscribe = async (announcementId) => request.put(`${baseUrl}/announcements/${announcementId}/subscribe`)

@@ -1,11 +1,19 @@
-const buildOptions = (data) => {
+const buildOptions = (data, userId) => {
 
     const options = {};
 
     if (data) {
         options.body = JSON.stringify(data)
         options.headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+        },
+        options.credentials = 'include'
+    }
+
+    if (userId) {
+        options.headers = {
+            ...options.headers,
+            'userId' : userId
         }
     }
 
@@ -13,29 +21,28 @@ const buildOptions = (data) => {
     if(token){
         options.headers = {
             ...options.headers,
-            'X-Authorization': token
-        }
+            'X-Authorization': token,
+        },
+        options.credentials = 'include'
     }
-console.log(options);
     return options;
 }
 
-const request = async (method, url, data) => {
+const request = async (method, url, data, userId) => {
     const response = await fetch(url, {
-        ...buildOptions(data),
+        ...buildOptions(data, userId),
         method
     });
-
+    
     if (response.status === 204) {
         return {};
     }
-
+    
     const result = await response.json();
 
     if (!response.ok) {
         throw result; 
     }
-
     return result;
 }    
 

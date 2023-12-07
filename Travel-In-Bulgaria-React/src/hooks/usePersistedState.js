@@ -7,7 +7,6 @@ export default function usePersistedState(key, defaultValue){
         if (persistedState) {
             return JSON.parse(persistedState)
         }
-        
         return defaultValue;
     });
 

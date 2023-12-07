@@ -24,7 +24,6 @@ function register(req, res, next) {
             if (process.env.NODE_ENV === 'production') {
                 res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true })
             } else {
-                console.log(`register - ${token}`);
                 res.cookie(authCookieName, token, { httpOnly: true })
             }
             res.status(200)
@@ -61,21 +60,20 @@ function login(req, res, next) {
             user = removePassword(user);
 
             const token = utils.jwt.createToken({ id: user._id });
-
+const result = [user,token]
             if (process.env.NODE_ENV === 'production') {
                 res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true })
             } else {
                 res.cookie(authCookieName, token, { httpOnly: true })
             }
             res.status(200)
-                .send(user);
+                .send(result)
         })
         .catch(next);
 }
 
 function logout(req, res) {
     const token = req.cookies[authCookieName];
-
     tokenBlacklistModel.create({ token })
         .then(() => {
             res.clearCookie(authCookieName)

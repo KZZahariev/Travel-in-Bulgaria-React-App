@@ -1,8 +1,34 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom" 
-import EditModeCurrentAnn from "./EditModeCurrentAnnouncement"
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom" 
+import AuthContext from "../../../contexts/authContext";
+import * as announcementService from "../../../services/announcementService"
+import useForm from "../../../hooks/useForm";
 
 export default function ViewModeCurrentAnn(announcement) {
+    const navigate = useNavigate();
+    const { userId } = useContext(AuthContext);
+
+
+    const deleteButtonClickHandler = async () => {
+        const hasConfirmed = confirm(`Are you sure you want to delete this post - From: ${announcement.from} To: ${announcement.to} at: ${announcement.date}`)
+
+        if (hasConfirmed) {
+            await announcementService.del(announcement._id)  
+
+            navigate('/announcements')
+        }
+    }
+
+    const subscribeForTraveling = async () => {
+        const announcementId = announcement._id;
+        // navigate(`/announcements/${announcement._id}`)
+        return await announcementService.subscribe(announcementId);
+    }
+
+    const { values, onChange, onSubmit } = useForm(subscribeForTraveling)
+
+    const isReserved = announcement?.subscribers?.includes(userId)
 
     return(
         <div className="p-10 mb-12 flex-nowrap no-scrollbar flex items-center justify-center opacity-90">
@@ -48,37 +74,43 @@ export default function ViewModeCurrentAnn(announcement) {
                     </ul>
                 </div>
                 <ul >
-                    <ul >
-                        {/* <!-- ----------------TODO EDIT WITH USERID------------- --> */}
-                        {<EditModeCurrentAnn key={announcement._id} {...announcement} />}
-                        
-                        {}
 
-                        <Link to={'edit/:announcementId'} className="p-2 flex flex-nowrap">
+                    {userId === announcement.userId && (
+                    <ul >
+                        <Link to={`/announcements/edit/${announcement._id}`} className="p-2 flex flex-nowrap">
                             <button className="transform transition-all hover:scale-105 w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                 >Edit</button>
                         </Link>
                         <li className="p-2 flex flex-nowrap">
                             <button className="transform transition-all hover:scale-105 w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                >Delete</button>
+                                onClick={deleteButtonClickHandler}>Delete</button>
                         </li>
                     </ul>
+                    )}
+
+                    {userId !== announcement.userId && (
                     <ul >
+                        {isReserved && (
                         <li className="p-2 flex flex-nowrap" >
                             <h3
                                 className="w-full flex justify-center text-white py-2  focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                 You are already reserved.</h3>
                         </li>
+                        )}
+                        {!isReserved && (
                         <li className="transform transition-all hover:scale-105 p-2 flex flex-nowrap" >
                             <button className="w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                >Reserve</button>
+                                 onClick={onSubmit}>Reserve</button>
                         </li>
+                        )}
                     </ul>
+                    )}
+
                 </ul>
-                <li className="transform transition-all hover:scale-105 p-2 flex flex-nowrap">
+                <Link to={'/announcements'} className="transform transition-all hover:scale-105 p-2 flex flex-nowrap">
                     <button className="w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                        >Back</button>
-                </li>
+                </Link>
             </div>
         </div>
     )

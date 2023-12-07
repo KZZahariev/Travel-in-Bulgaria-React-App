@@ -24,7 +24,8 @@ function getAnnouncement(req, res, next) {
 
 function createAnnouncement(req, res, next) {
     const { from, to, price, date, seats, description } = req.body;
-    const userId = req.headers['x-authorization'];
+    const userId = req.headers.userid;
+    // const { _id: userId } = req.user;
     announcementModel.create({ from, to, price, date, seats, description, userId})
             .then(announcement => res.json(announcement))
             .catch(next)
@@ -37,7 +38,7 @@ function createAnnouncement(req, res, next) {
 
 function subscribe(req, res, next) {
     const announcementId = req.params.announcementId;
-    const { _id: userId } = req.user;
+    const { _id: userId } = req.headers.userid;
     announcementModel.findByIdAndUpdate({ _id: announcementId }, { $addToSet: { subscribers: userId } }, { new: true })
         .then(updatedAnnouncement => {
             res.status(200).json(updatedAnnouncement)

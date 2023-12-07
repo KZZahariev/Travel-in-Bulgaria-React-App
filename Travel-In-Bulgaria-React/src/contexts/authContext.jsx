@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
-// import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie'
 
 import * as authService from "../services/authService";
 import usePersistedState from "../hooks/usePersistedState";
@@ -11,26 +12,23 @@ const AuthContext = createContext();
 export const AuthProvider = ({
     children
 }) => {
-    // const cookies = new Cookies();
     const navigate = useNavigate();
     const [auth, setAuth] = usePersistedState('accessToken', {}) //auth
 
     const registerSubmitHandler = async (values) => {
-        const result = await authService.register(values.email, values.username, values.password, values.rePassword); //
+        const result = await authService.register(values.email, values.username, values.password, values.rePassword);
 
-        setAuth(result._id);
+        // setAuth(result);
 
-        localStorage.setItem('accessToken', result._id); //must fix accessToken!!!!!!!!!!!!!!!!!1
-        // cookies.set('auth-cookie', result._id)
-        navigate('/')
+        // localStorage.setItem('accessToken', result._id); //must fix accessToken!!!!!!!!!!!!!!!!!1
+        navigate('/auth/login')
     }
-
+    
     const loginSubmitHandler = async (values) => {
         const result = await authService.login(values.email, values.password)
-
-        setAuth(result);
-
-        localStorage.setItem('accessToken', result._id)
+//ТРЯБВА ДА СЕТНА ТОКЕНА ОТ СЪРВЪРА НА ЛОКАЛСТОРИДЖА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        setAuth(result[0]);
+        localStorage.setItem('accessToken', result[1])
 
         navigate('/')
     };
@@ -45,10 +43,9 @@ export const AuthProvider = ({
         logoutHandler,
         username: auth.username || auth.username,
         email: auth.email,
-        userId: auth.userId,
+        userId: auth._id,
         isAuthenticated: !!auth._id,
     };
-
     return (
         <AuthContext.Provider value={values}>
             {children}
