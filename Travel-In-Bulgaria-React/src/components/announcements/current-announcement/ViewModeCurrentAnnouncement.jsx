@@ -12,10 +12,11 @@ export default function ViewModeCurrentAnn(announcement) {
 
     const deleteButtonClickHandler = async () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this post - From: ${announcement.from} To: ${announcement.to} at: ${announcement.date}`)
+        console.log(hasConfirmed);
 
         if (hasConfirmed) {
             await announcementService.del(announcement._id)  
-
+console.log('navigate');
             navigate('/announcements')
         }
     }
