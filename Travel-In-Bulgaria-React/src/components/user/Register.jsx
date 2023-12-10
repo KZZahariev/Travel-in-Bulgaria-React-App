@@ -143,7 +143,7 @@ export default function Register() {
                   className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Register</button>
               </form>
               <p className="text-sm text-gray-500 mt-4">Already have an account? 
-              <a className="text-blue-500 hover:text-blue-600"><Link to={'/login'}>Login</Link></a></p>
+              <a className="text-blue-500 hover:text-blue-600"><Link to={'/auth/login'}>Login</Link></a></p>
             </div>
           </div>
       )
