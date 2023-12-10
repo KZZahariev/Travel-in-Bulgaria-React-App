@@ -10,6 +10,7 @@ function getAnnouncements(req, res, next) {
 
 function getAnnouncement(req, res, next) {
     const { announcementId } = req.params;
+    console.log(announcementId);
     announcementModel.findById(announcementId)
         .populate({
             path: 'posts',
@@ -38,7 +39,10 @@ function createAnnouncement(req, res, next) {
 
 function subscribe(req, res, next) {
     const announcementId = req.params.announcementId;
-    const { _id: userId } = req.headers.userid;
+    // const userId = req.headers.userid;
+    const { _id: userId } = req.user;
+    // const { _id: userId } = req.headers.userid;
+    console.log(req);
     announcementModel.findByIdAndUpdate({ _id: announcementId }, { $addToSet: { subscribers: userId } }, { new: true })
         .then(updatedAnnouncement => {
             res.status(200).json(updatedAnnouncement)

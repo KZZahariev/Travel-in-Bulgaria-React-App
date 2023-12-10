@@ -33,7 +33,6 @@ const request = async (method, url, data, userId) => {
         ...buildOptions(data, userId),
         method
     });
-    
     if (response.status === 204) {
         return {};
     }

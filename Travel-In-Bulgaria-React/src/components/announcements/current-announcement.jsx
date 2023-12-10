@@ -10,12 +10,12 @@ const CurrentAnnouncement = () => {
     useEffect(() => {
         announcementService.getOne(announcementId)
             .then((result) => setAnnouncement(result));
-    }, [announcementId])
+        }, [announcementId])
     return(
-    <div>
-    {/* ---------------------VIEW MODE----------------- */}
-        {<ViewModeCurrentAnn key={announcementId} {...announcement}/>}
-    </div>
+        <div>
+        {/* ---------------------VIEW MODE----------------- */}
+            {<ViewModeCurrentAnn key={announcementId} {...announcement}/>}
+        </div>
     )
 }
 

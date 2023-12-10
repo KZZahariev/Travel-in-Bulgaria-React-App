@@ -37,7 +37,6 @@ export default function Login() {
         onSubmit,
         onChange
     })
-console.log(errors);
     return(
         <div className="min-h-screen flex items-center justify-center">
             <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">

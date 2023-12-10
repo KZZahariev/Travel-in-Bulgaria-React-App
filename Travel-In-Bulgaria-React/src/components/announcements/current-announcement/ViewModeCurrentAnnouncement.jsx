@@ -9,10 +9,9 @@ export default function ViewModeCurrentAnn(announcement) {
     const navigate = useNavigate();
     const { userId } = useContext(AuthContext);
 
-
     const deleteButtonClickHandler = async () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this post - From: ${announcement.from} To: ${announcement.to} at: ${announcement.date}`)
-        console.log(hasConfirmed);
+        // console.log(hasConfirmed);
 
         if (hasConfirmed) {
             await announcementService.del(announcement._id)  
@@ -23,13 +22,14 @@ console.log('navigate');
 
     const subscribeForTraveling = async () => {
         const announcementId = announcement._id;
+        console.log(announcementId);
         // navigate(`/announcements/${announcement._id}`)
         return await announcementService.subscribe(announcementId);
     }
 
-    const { values, onChange, onSubmit } = useForm(subscribeForTraveling)
+    const { onSubmit } = useForm(subscribeForTraveling) // values, onChange,
 
-    const isReserved = announcement?.subscribers?.includes(userId)
+    const isReserved = announcement?.subscribers?.includes(userId);
 
     return(
         <div className="p-10 mb-12 flex-nowrap no-scrollbar flex items-center justify-center opacity-90">

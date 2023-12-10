@@ -6,7 +6,6 @@ function createToken(data) {
 }
 
 function verifyToken(token) {
-    console.log(token);
     return new Promise((resolve, reject) => {
         jwt.verify(token, secret, (err, data) => {
             if (err) {
