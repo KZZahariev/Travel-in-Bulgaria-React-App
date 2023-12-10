@@ -1,7 +1,10 @@
-import { useContext } from "react";
+/* eslint-disable no-unused-vars */
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom"
+import { useFormik } from "formik";
+
 import AuthContext from "../../contexts/authContext";
-import useForm from "../../hooks/useForm";
+import { loginSchema } from "../../schemas/index";
 
 const RegisterFormKeys = {
     Email: 'email',
@@ -11,16 +14,35 @@ const RegisterFormKeys = {
 export default function Login() {
 
     const { loginSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler , {
-        [RegisterFormKeys.Email]: '',
-        [RegisterFormKeys.Password]: ''
-    })
+    const { logState, setLogState } = useState({})
 
+    const onChange = (e) => {
+        setLogState(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }));
+    };
+
+     const onSubmit = async (values) => {
+
+        await loginSubmitHandler(values)
+    }
+
+    const { values, errors, touched, handleBlur, handleSubmit, handleChange, } = useFormik({
+        initialValues: {
+            [RegisterFormKeys.Email]: '',
+            [RegisterFormKeys.Password]: ''
+        },
+        validationSchema: loginSchema,
+        onSubmit,
+        onChange
+    })
+console.log(errors);
     return(
         <div className="min-h-screen flex items-center justify-center">
             <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">
                 <h2 className="text-slate-100 text-2xl font-semibold mb-4">Login</h2>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-gray-500 text-sm font-medium">Email</label>
                         <input 
@@ -28,17 +50,19 @@ export default function Login() {
                             id="email" 
                             name="email" 
                             value={values[RegisterFormKeys.Email]} 
-                            onChange={onChange}
-                            className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={errors.email && touched.email ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}>
                         </input>
-                            <p className="text-red-500">
-                                Email is required!
-                            </p>
-                            <p className="text-red-500">
-                                Email is not valid!
-                            </p> 
-
+                        {errors.email && touched.email && (
+                                <>
+                                    <p className="text-red-500" >
+                                      {errors.email}
+                                    </p>
+                                </>
+                            )}
                     </div>
+
                     <div className="mb-4">
                         <label htmlFor="password" className="block text-gray-500 text-sm font-medium">Password</label>
                         <input 
@@ -46,24 +70,24 @@ export default function Login() {
                             id="password" 
                             name="password" 
                             value={values[RegisterFormKeys.Password]} 
-                            onChange={onChange}
-                            className="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-                            
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            className={errors.password && touched.password ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}>
                         </input>
-                            <p className="text-red-500">
-                                Password is required!
-                            </p>
-                            <p className="text-red-500" >
-                                Password must be at least 4 characters!
-                            </p>
-                        
-
+                            {errors.password && touched.password && (
+                                <>
+                                    <p className="text-red-500" >
+                                      {errors.password}
+                                    </p>
+                                </>
+                            )}                    
                     </div>
-                    <button
+
+                    <button type="submit"
                         className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Login</button>
                 </form>
                 <p className="text-sm text-gray-500 mt-4">Don&apos;t have an account? <a
-                        className="text-blue-500 hover:text-blue-600"><Link to={'/register'}>Register</Link></a></p>
+                        className="text-blue-500 hover:text-blue-600"><Link to={'/auth/register'}>Register</Link></a></p>
             </div>
         </div>
     )

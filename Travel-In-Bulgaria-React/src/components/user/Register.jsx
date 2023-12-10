@@ -60,7 +60,6 @@ export default function Register() {
                       onBlur={handleBlur}
                       className={errors.username && touched.username ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
                         />
-                </div>
                 {/* username validation  */}
                 {errors.username && touched.username && (
                     <>
@@ -69,6 +68,7 @@ export default function Register() {
                         </p>
                     </>
                 )}
+                </div>
 
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-gray-500 text-sm font-medium">Email</label>
@@ -81,8 +81,6 @@ export default function Register() {
                       onBlur={handleBlur}
                       className={errors.email && touched.email ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
                         />
-                </div>
-
                 {/* Email validation  */}
                 {errors.email && touched.email && (
                     <>
@@ -91,7 +89,7 @@ export default function Register() {
                         </p>
                     </>
                 )}
-
+                </div>
 
                   <div className="mb-4">
                     <label htmlFor="password" className="block text-gray-500 text-sm font-medium">Password</label>
@@ -105,7 +103,6 @@ export default function Register() {
                         onBlur={handleBlur}
                         className={errors.password && touched.password ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
                         />
-                  </div>
                   {/* <!-- Password validator --> */}
                   {errors.password && touched.password && (
                       <>
@@ -114,6 +111,7 @@ export default function Register() {
                             </p>
                         </>
                     )}
+                  </div>
 
                   <div className="mb-4">
                     <label htmlFor="rePassword" className="block text-gray-500 text-sm font-medium">Confirm Password</label>
@@ -127,7 +125,6 @@ export default function Register() {
                         onBlur={handleBlur}
                         className={errors.rePassword && touched.rePassword ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
                         />
-                  </div>
                   {/* Confirm password validation  */}
                     {errors.rePassword && touched.rePassword && (
                         <>
@@ -136,6 +133,7 @@ export default function Register() {
                               </p>
                         </>
                     )}
+                  </div>
 
 
 
@@ -143,7 +141,7 @@ export default function Register() {
                   className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Register</button>
               </form>
               <p className="text-sm text-gray-500 mt-4">Already have an account? 
-              <a className="text-blue-500 hover:text-blue-600"><Link to={'/auth/login'}>Login</Link></a></p>
+              <a className="text-blue-500 hover:text-blue-600"><Link to={'/auth/login'}> Login</Link></a></p>
             </div>
           </div>
       )
