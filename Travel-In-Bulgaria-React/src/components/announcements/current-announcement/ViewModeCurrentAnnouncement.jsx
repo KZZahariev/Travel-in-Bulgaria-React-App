@@ -7,15 +7,13 @@ import useForm from "../../../hooks/useForm";
 
 export default function ViewModeCurrentAnn(announcement) {
     const navigate = useNavigate();
-    const { userId } = useContext(AuthContext);
+    const { isAuthenticated, userId } = useContext(AuthContext);
 
-    const deleteButtonClickHandler = async () => {
+    const deleteButtonClickHandler = () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this post - From: ${announcement.from} To: ${announcement.to} at: ${announcement.date}`)
-        // console.log(hasConfirmed);
 
         if (hasConfirmed) {
-            await announcementService.del(announcement._id)  
-console.log('navigate');
+            announcementService.del(announcement._id)  
             navigate('/announcements')
         }
     }
@@ -75,8 +73,7 @@ console.log('navigate');
                     </ul>
                 </div>
                 <ul >
-
-                    {userId === announcement.userId && (
+                    {isAuthenticated && userId === announcement.userId && (
                     <ul >
                         <Link to={`/announcements/edit/${announcement._id}`} className="p-2 flex flex-nowrap">
                             <button className="transform transition-all hover:scale-105 w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -89,7 +86,7 @@ console.log('navigate');
                     </ul>
                     )}
 
-                    {userId !== announcement.userId && (
+                    {isAuthenticated && userId !== announcement.userId && (
                     <ul >
                         {isReserved && (
                         <li className="p-2 flex flex-nowrap" >
@@ -106,8 +103,8 @@ console.log('navigate');
                         )}
                     </ul>
                     )}
-
                 </ul>
+
                 <Link to={'/announcements'} className="transform transition-all hover:scale-105 p-2 flex flex-nowrap">
                     <button className="w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                        >Back</button>

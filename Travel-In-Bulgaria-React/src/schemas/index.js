@@ -10,4 +10,13 @@ export const registerSchema = yup.object().shape({
 export const loginSchema = yup.object().shape({
     email: yup.string().email('Email is not valid!').required("Email is required!"),
     password: yup.string().min(5, "Password must be at least 5 characters").required("Password is required!"),
+});
+
+export const createAnnouncement = yup.object().shape({
+    from: yup.string().min(2, '"From" must be at least 2 characters long.').required('"From" is required.'),
+    to: yup.string().min(2, '"To" must be at least 2 characters long.').required('"To" is required.'),
+    price: yup.number().required('"Price" is required.'),
+    date: yup.date().required('"Date" is required.'),
+    seats: yup.number().required('"Seats" is required.'),
+    description: yup.string().min(5, '"Description" must be at least 5 characters long.').required('"Date" is required.')
 })

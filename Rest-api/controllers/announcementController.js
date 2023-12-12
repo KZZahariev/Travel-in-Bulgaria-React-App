@@ -42,7 +42,6 @@ function subscribe(req, res, next) {
     // const userId = req.headers.userid;
     const { _id: userId } = req.user;
     // const { _id: userId } = req.headers.userid;
-    console.log(req);
     announcementModel.findByIdAndUpdate({ _id: announcementId }, { $addToSet: { subscribers: userId } }, { new: true })
         .then(updatedAnnouncement => {
             res.status(200).json(updatedAnnouncement)
@@ -52,7 +51,7 @@ function subscribe(req, res, next) {
 
 function editAnnouncement(req, res, next) {
     const id  = res.req.params['announcementId'];
-    console.log(id);
+
     const { from, to, price, date, seats, description } = req.body;
 
     announcementModel.findByIdAndUpdate(id, { from, to, price, date, seats, description }, { runValidators: true, new: true })
@@ -65,9 +64,9 @@ async function deleteAnnouncement(req, res, next){
     const announcementId  = req.params['announcementId'];
     const { _id: userId } = req.user;
 
-        const announcement = await announcementModel.findByIdAndDelete(announcementId);
-        const user = await userModel.findOneAndUpdate({ _id: userId }, { $pull: { announcements: announcementId } })
-        return;
+    const announcement = await announcementModel.findByIdAndDelete(announcementId);
+    const user = await userModel.findOneAndUpdate({ _id: userId }, { $pull: { announcements: announcementId } })
+    return;
     
 }
 
