@@ -139,7 +139,7 @@ const NewAnnouncement = () => {
                                 value={values[AddAnnouncementFormKeys.Date]}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className={errors.date && touched.date ? "border-2 border-rose-500 mt-1 block w-full rounded-md bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0 h-32 resize-none" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 h-32 resize-none"}
+                                className={errors.date && touched.date ? "border-2 border-rose-500 mt-1 block w-full rounded-md bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0 h-32 resize-none" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent m- focus:border-gray-500 focus:bg-white focus:ring-0"}
                                />
                             {/* <!-- "Date" validation --> */}
                             {errors.date && touched.date && (
