@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { useFormik } from "formik";
@@ -81,15 +82,9 @@ const NewAnnouncement = () => {
                                       {errors.from}
                                     </p>
                                 </>
-                            )}
-                                {/* <p className="text-red-500" >
-                                &quot;From&quot; is required.
-                                </p>
-                                <p className="text-red-500" >
-                                &quot;From&quot; must be at least 2 characters long.
-                                </p> */}
-                           
+                            )}                           
                         </li>
+
                         <li className="mr-2 mb-2">
                             <label htmlFor="to" className="block text-gray-500 text-sm font-medium">To:</label>
                             <input 
@@ -109,13 +104,6 @@ const NewAnnouncement = () => {
                                     </p>
                                 </>
                             )}
-                                {/* <p className="text-red-500" >
-                                &quot;To&quot; is required.
-                                </p>
-                                <p className="text-red-500" >
-                                &quot;To&quot; must be at least 2 characters long.
-                                </p>
-                             */}
                         </li>
                     </ul>
                     <ul>
@@ -138,11 +126,7 @@ const NewAnnouncement = () => {
                                       {errors.price}
                                     </p>
                                 </>
-                            )}
-                                {/* <p className="text-red-500" >
-                                &quot;Price&quot; is required.
-                                </p> */}
-                        
+                            )}                        
                         </li>
                     </ul>
                     <ul>
@@ -165,9 +149,6 @@ const NewAnnouncement = () => {
                                     </p>
                                 </>
                             )}
-                                {/* <p className="text-red-500" >
-                                &quot;Date&quot; is required.
-                                </p> */}
                         </li>
                     </ul>
                     <ul>
@@ -190,9 +171,6 @@ const NewAnnouncement = () => {
                                     </p>
                                 </>
                             )}
-                                {/* <p className="text-red-500" >
-                                &quot;Seats&quot; is required.
-                                </p> */}
                         </li>
                     </ul>
                 </div>
@@ -215,12 +193,6 @@ const NewAnnouncement = () => {
                                     </p>
                                 </>
                             )}
-                            {/* <p className="text-red-500" >
-                            &quot;Description&quot; is required.
-                            </p>
-                            <p className="text-red-500" >
-                            &quot;Description&quot; must be at least 5 characters long.
-                            </p> */}
                 </div>
                 <button type="submit"
                     className="transform transition-all hover:scale-105 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Add

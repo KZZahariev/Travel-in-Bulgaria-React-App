@@ -31,3 +31,7 @@ export const login = async (email, password) => {
 
 export const logout = () => request.post(`${baseUrl}/logout`)
 
+
+export const getUserInfo = () => request.get(`${baseUrl}/users/profile`)
+
+export const editUserInfo = (userData) => request.put(`${baseUrl}/users/profile`, userData)

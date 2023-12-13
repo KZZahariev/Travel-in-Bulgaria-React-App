@@ -10,7 +10,8 @@ import Home from "./components/home/Home";
 import About from "./components/about/About";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Profile from "./components/user/Profile";
+import Profile from "./components/user/Profile/Profile";
+import EditProfile from "./components/user/Profile/ProfileModes/EditProfile";
 import NewAnnouncement from "./components/announcements/new-announcement";
 import AnnouncementsList from "./components/announcements/announcements-list";
 import PageNotFound from "./components/page-not-found/Page-not-found";
@@ -31,6 +32,7 @@ function App() {
               <Route path="/auth/register" element={<Register />}/>
               <Route path="/logout" element={<Logout />}/>
               <Route path="/users/profile" element={<Profile />}/>
+              <Route path="/users/profile/edit" element={<EditProfile />}/>
               <Route path="/announcements" element={<AnnouncementsList />}/>
               <Route path="/announcements/:announcementId" element={<CurrentAnnouncement />}/>
               <Route path="/add-announcement" element={<NewAnnouncement />}/>

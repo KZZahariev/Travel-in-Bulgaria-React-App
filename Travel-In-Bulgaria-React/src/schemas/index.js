@@ -19,4 +19,9 @@ export const createAnnouncement = yup.object().shape({
     date: yup.date().required('"Date" is required.'),
     seats: yup.number().required('"Seats" is required.'),
     description: yup.string().min(5, '"Description" must be at least 5 characters long.').required('"Date" is required.')
+});
+
+export const editProfileSchema = yup.object().shape({
+    username: yup.string().min(5, "Username must be at least 5 characters").required("Username is required!"),
+    email: yup.string().email('Email is not valid!').required("Email is required!"),
 })
