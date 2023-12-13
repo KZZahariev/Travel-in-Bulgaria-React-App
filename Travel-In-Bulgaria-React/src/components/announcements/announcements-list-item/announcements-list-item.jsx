@@ -8,7 +8,6 @@ export default function AnnouncementsListItem({
     price,
     userId
 }) {    
-
     return(
         <div className="transform transition-all hover:scale-105 p-2 mb-12 flex-nowrap no-scrollbar flex items-center justify-center">
         <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">

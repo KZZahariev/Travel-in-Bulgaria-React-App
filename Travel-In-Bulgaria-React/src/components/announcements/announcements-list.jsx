@@ -10,7 +10,7 @@ export default function AnnouncementList() {
     announcementService.getAll()
       .then((result) => setAnnouncements(result))
   }, []);
-  console.log(announcements);
+
   return (
     // <div className="bg-red-500 text-2xl" *ngIf="!errorFetchingData">Error loading announcements</div>
     <div className="bg-cover flex flex-col min-h-screen bg-fixed bg-[url(./assets/asphalt-highway.jpg)]">

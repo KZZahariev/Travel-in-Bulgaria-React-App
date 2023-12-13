@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const ViewProfile = (user) => {
-
+console.log(user);
     return(
         <div className="bg-cover flex flex-col min-h-screen bg-fixed bg-[url(./assets/road-mountains-tarmac-sunrise-morning-macos-big-sur-stock-5k-7680x4320-3996.jpg)]">
             <div className="transform transition-all hover:scale-105 max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
@@ -23,7 +23,7 @@ const ViewProfile = (user) => {
                         <li className="flex flex-col items-center justify-around">
                             <img className="w-10 fill-current text-blue-900"
                                 src="https://cdn.pixabay.com/photo/2022/01/27/21/37/delivery-6973178_960_720.png" alt="car"/>
-                            <div></div>
+                            <div>{user.announcements?.length}</div>
                         </li>
                     </ul>
                     <div className="p-4 border-t  mt-2 inline-flex justify-center items-center space-x-7">

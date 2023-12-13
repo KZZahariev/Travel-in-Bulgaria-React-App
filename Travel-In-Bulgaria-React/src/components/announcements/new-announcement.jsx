@@ -139,7 +139,7 @@ const NewAnnouncement = () => {
                                 value={values[AddAnnouncementFormKeys.Date]}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className={errors.date && touched.date ? "border-2 border-rose-500 mt-1 block w-full rounded-md bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
+                                className={errors.date && touched.date ? "border-2 border-rose-500 mt-1 block w-full rounded-md bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0 h-32 resize-none" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 h-32 resize-none"}
                                />
                             {/* <!-- "Date" validation --> */}
                             {errors.date && touched.date && (
@@ -182,7 +182,7 @@ const NewAnnouncement = () => {
                         value={values[AddAnnouncementFormKeys.Description]}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={errors.description && touched.description ? "border-2 border-rose-500 mt-1 block w-full rounded-md bg-gray-100 focus:border-gray-500 focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
+                        className={errors.description && touched.description ? "border-2 border-rose-500 mt-1 block w-full rounded-md bg-gray-100  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
                        ></textarea>
 
                         {/* <!-- "description" validation --> */}

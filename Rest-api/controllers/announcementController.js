@@ -28,13 +28,13 @@ function createAnnouncement(req, res, next) {
     const userId = req.headers.userid;
     // const { _id: userId } = req.user;
     announcementModel.create({ from, to, price, date, seats, description, userId})
-            .then(announcement => res.json(announcement))
-            .catch(next)
-        // .then(announcement => {
-        //     newPost(description, announcement._id) // userId,
-        //         .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
-        // })
-        // .catch(next);
+            // .then(announcement => res.json(announcement))
+            // .catch(next)
+        .then(announcement => {
+            newPost(description, userId, announcement._id) // userId,
+                .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
+        })
+        .catch(next);
 }
 
 function subscribe(req, res, next) {
