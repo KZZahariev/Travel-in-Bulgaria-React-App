@@ -13,7 +13,7 @@ export const AuthProvider = ({
     children
 }) => {
     const navigate = useNavigate();
-    const [auth, setAuth] = usePersistedState('accessToken', {}) //auth
+    const [auth, setAuth] = usePersistedState('accessToken', {}) //auth //accessToken
 
     const registerSubmitHandler = async (values) => {
         const result = await authService.register(values.email, values.username, values.password, values.rePassword);
@@ -26,7 +26,6 @@ export const AuthProvider = ({
     
     const loginSubmitHandler = async (values) => {
         const result = await authService.login(values.email, values.password)
-//ТРЯБВА ДА СЕТНА ТОКЕНА ОТ СЪРВЪРА НА ЛОКАЛСТОРИДЖА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         setAuth(result[0]);
         localStorage.setItem('accessToken', result[1])
 
@@ -37,6 +36,7 @@ export const AuthProvider = ({
         setAuth({});
         localStorage.removeItem('accessToken') 
     }
+    const authenticated = localStorage.getItem('accessToken')
     const values = {
         registerSubmitHandler,
         loginSubmitHandler,
@@ -44,7 +44,7 @@ export const AuthProvider = ({
         username: auth.username || auth.username,
         email: auth.email,
         userId: auth._id,
-        isAuthenticated: !!auth._id,
+        isAuthenticated: !!authenticated,
     };
     return (
         <AuthContext.Provider value={values}>

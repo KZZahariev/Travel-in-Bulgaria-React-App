@@ -18,31 +18,41 @@ import PageNotFound from "./components/page-not-found/Page-not-found";
 import EditModeCurrentAnn from "./components/announcements/current-announcement/EditModeCurrentAnnouncement";
 import Logout from "./components/user/Logout";
 import CurrentAnnouncement from "./components/announcements/current-announcement";
+import ErrorBoundary from "./guards/ErrorBoundary/ErrorBoundary";
+import AuthGuard from "./guards/AuthGuards";
+import BaseLoggedAuthGuard from "./guards/BaseLoggedInAuthGuard";
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="main-container">
-          <Header />
-          <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/home" element={<Home />}/>
-              <Route path="/about" element={<About />}/>
-              <Route path="/auth/login" element={<Login />}/>
-              <Route path="/auth/register" element={<Register />}/>
-              <Route path="/logout" element={<Logout />}/>
-              <Route path="/users/profile" element={<Profile />}/>
-              <Route path="/users/profile/edit" element={<EditProfile />}/>
-              <Route path="/announcements" element={<AnnouncementsList />}/>
-              <Route path="/announcements/:announcementId" element={<CurrentAnnouncement />}/>
-              <Route path="/add-announcement" element={<NewAnnouncement />}/>
-              <Route path="/announcements/edit/:announcementId" element={<EditModeCurrentAnn />}/>
-              <Route path="*" element={<PageNotFound />}/>
-          </Routes>
+    // <ErrorBoundary>
+        <AuthProvider>
+            <div className="main-container">
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />}/>
+                    <Route path="/home" element={<Home />}/>
+                    <Route path="/about" element={<About />}/>
+                    <Route element={<BaseLoggedAuthGuard />}>
+                        <Route path="/auth/login" element={<Login />}/>
+                        <Route path="/auth/register" element={<Register />}/>
+                    </Route>
+                    <Route path="/announcements" element={<AnnouncementsList />}/>
+                    <Route path="/announcements/:announcementId" element={<CurrentAnnouncement />}/>
+                    <Route element={<AuthGuard />}>
+                        <Route path="/logout" element={<Logout />}/>
+                        <Route path="/add-announcement" element={<NewAnnouncement />}/>
+                        <Route path="/announcements/edit/:announcementId" element={<EditModeCurrentAnn />}/>
+                        <Route path="/users/profile" element={<Profile />}/>
+                        <Route path="/users/profile/edit" element={<EditProfile />}/>
+                    </Route>
 
-          <Footer />
-      </div>
-    </ AuthProvider>
+                    <Route path="*" element={<PageNotFound />}/>
+                </Routes>
+
+                <Footer />
+            </div>
+        </ AuthProvider>
+    // </ErrorBoundary>
   )
 }
 
