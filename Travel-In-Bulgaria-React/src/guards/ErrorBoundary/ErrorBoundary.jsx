@@ -11,6 +11,7 @@ export default class ErrorBoundary extends Component {
     }
 
     static getDerivedStateFromError(err) {
+        console.log('GetDerivedStateFromError');
         return { hasError: true }
     }
 
@@ -18,7 +19,6 @@ export default class ErrorBoundary extends Component {
         console.log(error);
         console.log(errorInfo);
     }
-
     render(){
         if (this.state.hasError) {
             return (
@@ -38,5 +38,6 @@ export default class ErrorBoundary extends Component {
                 </main>
             )
         }
+        return this.props.children;
     }
 }

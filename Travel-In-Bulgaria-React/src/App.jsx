@@ -24,7 +24,7 @@ import BaseLoggedAuthGuard from "./guards/BaseLoggedInAuthGuard";
 
 function App() {
   return (
-    // <ErrorBoundary>
+    <ErrorBoundary>
         <AuthProvider>
             <div className="main-container">
                 <Header />
@@ -52,7 +52,7 @@ function App() {
                 <Footer />
             </div>
         </ AuthProvider>
-    // </ErrorBoundary>
+    </ErrorBoundary>
   )
 }
 

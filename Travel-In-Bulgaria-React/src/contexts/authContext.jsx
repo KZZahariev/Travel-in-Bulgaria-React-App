@@ -13,7 +13,7 @@ export const AuthProvider = ({
     children
 }) => {
     const navigate = useNavigate();
-    const [auth, setAuth] = usePersistedState('accessToken', {}) //auth //accessToken
+    const [auth, setAuth] = usePersistedState('auth', {}) //auth //accessToken
 
     const registerSubmitHandler = async (values) => {
         const result = await authService.register(values.email, values.username, values.password, values.rePassword);
@@ -28,7 +28,6 @@ export const AuthProvider = ({
         const result = await authService.login(values.email, values.password)
         setAuth(result[0]);
         localStorage.setItem('accessToken', result[1])
-
         navigate('/')
     };
 
@@ -36,12 +35,13 @@ export const AuthProvider = ({
         setAuth({});
         localStorage.removeItem('accessToken') 
     }
+    console.log(auth);
     const authenticated = localStorage.getItem('accessToken')
     const values = {
         registerSubmitHandler,
         loginSubmitHandler,
         logoutHandler,
-        username: auth.username || auth.username,
+        username: auth.username || auth.email,
         email: auth.email,
         userId: auth._id,
         isAuthenticated: !!authenticated,
