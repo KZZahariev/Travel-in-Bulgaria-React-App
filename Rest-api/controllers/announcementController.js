@@ -1,5 +1,5 @@
 const { announcementModel, userModel } = require('../models');
-const { newPost } = require('./postController')
+const { newComment } = require('./commentsController')
 
 function getAnnouncements(req, res, next) {
     announcementModel.find()
@@ -10,10 +10,9 @@ function getAnnouncements(req, res, next) {
 
 function getAnnouncement(req, res, next) {
     const { announcementId } = req.params;
-    console.log(announcementId);
     announcementModel.findById(announcementId)
         .populate({
-            path: 'posts',
+            path: 'comments',
             populate: {
                 path: 'userId'
             }
@@ -28,12 +27,12 @@ function createAnnouncement(req, res, next) {
     const userId = req.headers.userid;
     // const { _id: userId } = req.user;
     announcementModel.create({ from, to, price, date, seats, description, userId})
-            // .then(announcement => res.json(announcement))
-            // .catch(next)
-        .then(announcement => {
-            newPost(description, userId, announcement._id) // userId,
-                .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
-        })
+            .then(announcement => res.json(announcement))
+            .catch(next)
+        // .then(announcement => {
+        //     newComment(description, userId, announcement._id) // userId,
+        //         .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
+        // })
         .catch(next);
 }
 

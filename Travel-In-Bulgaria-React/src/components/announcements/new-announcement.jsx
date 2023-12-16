@@ -51,7 +51,7 @@ const NewAnnouncement = () => {
         },
         validationSchema: createAnnouncement,
         onSubmit,
-        onChange
+        onChange,
     })
 
 

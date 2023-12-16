@@ -35,7 +35,6 @@ export const AuthProvider = ({
         setAuth({});
         localStorage.removeItem('accessToken') 
     }
-    console.log(auth);
     const authenticated = localStorage.getItem('accessToken')
     const values = {
         registerSubmitHandler,

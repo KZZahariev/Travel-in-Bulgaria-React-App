@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom"
 import * as announcementService from "../../../services/announcementService"
 import { useFormik } from "formik";
 import { editAnnouncementSchema } from "../../../schemas";
+import Spinner from "../../spinner/spinner";
 
 const EditAnnouncementFormKeys = {
     From: 'from',
@@ -18,6 +19,7 @@ const EditAnnouncementFormKeys = {
 export default function EditModeCurrentAnn(){
     const navigate = useNavigate();
     const { announcementId } = useParams();
+    const { isLoading, setIsLoading } = useState(true)
     const [ announcement, setAnnouncements ] = useState({
         from: '',
         to: '',
@@ -30,6 +32,8 @@ export default function EditModeCurrentAnn(){
     useEffect(() => {
         announcementService.getOne(announcementId)
             .then(result => setAnnouncements(result))
+            .catch((err) => console.log(err))
+            .finally(() => setIsLoading(false))
     }, [announcementId]);
 
     const onSubmit = async (e) => {
@@ -66,10 +70,10 @@ export default function EditModeCurrentAnn(){
         onChange,
         enableReinitialize: true
     });
-console.log(errors);
     // const { values, onChange, onSubmit } = useForm(editAnnouncementSubmitHandler, announcement)
     return(
         <div className="min-h-screen flex items-center justify-center opacity-90">
+            {isLoading ? <Spinner /> : (
             <div className="bg-gray-800 p-8 shadow-md rounded-md w-96 transform transition-all hover:scale-105">
                 <h2 className="text-slate-100 text-2xl font-semibold mb-4">Edit your announcement.</h2>
                 <form onSubmit={handleSubmit}>
@@ -215,6 +219,7 @@ console.log(errors);
                     </Link>
                 </form>
             </div>
+            )}
         </div>
     )
 }

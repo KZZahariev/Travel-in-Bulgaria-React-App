@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const ViewProfile = (user) => {
-console.log(user);
     return(
         <div className="bg-cover flex flex-col min-h-screen bg-fixed bg-[url(./assets/road-mountains-tarmac-sunrise-morning-macos-big-sur-stock-5k-7680x4320-3996.jpg)]">
             <div className="transform transition-all hover:scale-105 max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">

@@ -34,3 +34,7 @@ export const editAnnouncementSchema = yup.object().shape({
     seats: yup.number().required('"Seats" is required.'),
     description: yup.string().min(5, '"Description" must be at least 5 characters long.').required('"Description" is required.')
 });
+
+export const addCommentSchema = yup.object().shape({
+    comment: yup.string().required("Comment is required!"),
+});

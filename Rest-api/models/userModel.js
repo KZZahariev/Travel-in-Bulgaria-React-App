@@ -37,10 +37,10 @@ const userSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Announcement"
     }],
-    // posts: [{
-    //     type: ObjectId,
-    //     ref: "Post"
-    // }]
+    comments: [{
+        type: ObjectId,
+        ref: "Comment"
+    }]
 }, { timestamps: { createdAt: 'created_at' } });
 
 userSchema.methods = {

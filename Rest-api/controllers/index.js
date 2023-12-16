@@ -1,9 +1,9 @@
 const authController = require('./auth');
 const announcementController = require('./announcementController');
-const postController = require('./postController');
+const commentController = require('./commentsController');
 
 module.exports = {
     authController,
     announcementController,
-    postController,
+    commentController,
 }

@@ -4,10 +4,13 @@ import { Link, useNavigate } from "react-router-dom"
 import AuthContext from "../../../contexts/authContext";
 import * as announcementService from "../../../services/announcementService"
 import useForm from "../../../hooks/useForm";
+import AddComment from "../../comments/AddComment";
 
 export default function ViewModeCurrentAnn(announcement) {
     const navigate = useNavigate();
     const { isAuthenticated, userId } = useContext(AuthContext);
+    const isOwner = announcement.userId === userId;
+    const comments = announcement.comments
 
     const deleteButtonClickHandler = () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this post - From: ${announcement.from} To: ${announcement.to} at: ${announcement.date}`)
@@ -20,7 +23,6 @@ export default function ViewModeCurrentAnn(announcement) {
 
     const subscribeForTraveling = async () => {
         const announcementId = announcement._id;
-        console.log(announcementId);
         // navigate(`/announcements/${announcement._id}`)
         return await announcementService.subscribe(announcementId);
     }
@@ -34,10 +36,14 @@ export default function ViewModeCurrentAnn(announcement) {
             <div className="bg-gray-800 p-8 shadow-md rounded-md w-96 transform transition-all hover:scale-105">
                 <h2 className="text-slate-100 text-2xl font-semibold mb-4"></h2>
                 <div className="mb-4">
+                    {isOwner && (
                     <label htmlFor="title" className="block text-gray-500 text-sm font-medium my-2">I&apos;m
                         travel</label>
-                    <label htmlFor="title" className="block text-gray-500 text-sm font-medium my-2">Do you want
+                    )}
+                    {!isOwner && (
+                        <label htmlFor="title" className="block text-gray-500 text-sm font-medium my-2">Do you want
                         to travel</label>
+                        )}
                     <ul>
                         <li className="mr-2 mb-2">
                             <label htmlFor="from" className="block text-gray-500 text-sm font-medium">From: <span
@@ -96,7 +102,7 @@ export default function ViewModeCurrentAnn(announcement) {
                         </li>
                         )}
                         {!isReserved && (
-                        <li className="transform transition-all hover:scale-105 p-2 flex flex-nowrap" >
+                            <li className="transform transition-all hover:scale-105 p-2 flex flex-nowrap" >
                             <button className="w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                  onClick={onSubmit}>Reserve</button>
                         </li>
@@ -109,6 +115,8 @@ export default function ViewModeCurrentAnn(announcement) {
                     <button className="w-full flex justify-center bg-gray-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                        >Back</button>
                 </Link>
+
+                {<AddComment {...comments}/>}
             </div>
         </div>
     )
