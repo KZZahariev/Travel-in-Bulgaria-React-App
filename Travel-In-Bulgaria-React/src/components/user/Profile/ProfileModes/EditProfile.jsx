@@ -13,7 +13,8 @@ const EditProfileFormKeys = {
 
 const EditProfile = () => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const { editProfileHandler } = useContext(AuthContext);
     const [user, setUser] = useState({
         username: '',
         email: ''
@@ -29,12 +30,14 @@ const EditProfile = () => {
 
     const onSubmit = async (e) => {
         const userData = e;
-        try {
-            await authService.editUserInfo(userData)
-            navigate('/users/profile')
-        } catch (error) {
-            console.log(error);
-        }
+
+        await editProfileHandler(userData)
+        // try {
+        //     await authService.editUserInfo(userData)
+        //     navigate('/users/profile')
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     const onChange = (e) => {

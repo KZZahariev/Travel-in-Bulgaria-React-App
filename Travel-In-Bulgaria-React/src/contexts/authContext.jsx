@@ -35,12 +35,23 @@ export const AuthProvider = ({
         setAuth({});
         localStorage.removeItem('accessToken') 
     }
+
+    const editProfileHandler = async (userData) => {
+        try {
+            let res = await authService.editUserInfo(userData)
+            setAuth(res);
+            navigate('/users/profile')
+        } catch (error) {
+            console.log(error);
+        }
+    } 
+
     const authenticated = localStorage.getItem('accessToken')
-    console.log(auth.username);
     const values = {
         registerSubmitHandler,
         loginSubmitHandler,
         logoutHandler,
+        editProfileHandler,
         username: auth.username || auth.email,
         email: auth.email,
         userId: auth._id,

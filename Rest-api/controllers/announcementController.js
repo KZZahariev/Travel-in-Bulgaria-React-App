@@ -27,7 +27,8 @@ function createAnnouncement(req, res, next) {
     const userId = req.headers.userid;
     // const { _id: userId } = req.user;
     announcementModel.create({ from, to, price, date, seats, description, userId})
-            .then(announcement => res.json(announcement))
+            .then(announcement => userModel.updateOne({ _id: userId }, { $addToSet: { announcements: announcement._id } }),)
+            .then(announcement => res.status(200).json(announcement))
             .catch(next)
         // .then(announcement => {
         //     newComment(description, userId, announcement._id) // userId,

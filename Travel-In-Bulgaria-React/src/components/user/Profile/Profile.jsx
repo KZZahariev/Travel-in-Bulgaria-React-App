@@ -15,7 +15,6 @@ const Profile = () => {
         authService.getUserInfo()
             .then((result) => setUser(result))
     },[userId]);
-
     return(
         <>
             {<ViewProfile key={user._id} {...user} />}
