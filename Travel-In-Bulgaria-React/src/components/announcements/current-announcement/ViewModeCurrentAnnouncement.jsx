@@ -1,16 +1,20 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
+import { useContext, useReducer, useState } from "react";
 import { Link, useNavigate } from "react-router-dom" 
 import AuthContext from "../../../contexts/authContext";
 import * as announcementService from "../../../services/announcementService"
 import useForm from "../../../hooks/useForm";
 import AddComment from "../../comments/AddComment";
+import announcementReducer from "./announcementReducer";
 
 export default function ViewModeCurrentAnn(announcement) {
     const navigate = useNavigate();
     const { isAuthenticated, userId } = useContext(AuthContext);
+    // const [isReserved, dispatch] = useReducer(announcementReducer, []);
     const isOwner = announcement.userId === userId;
-    const comments = announcement.comments
+    const comments = announcement.comments;
+    const isReserved = announcement?.subscribers?.includes(userId);
+    const [isReservedState, setIsReservedState] = useState(isReserved);
 
     const deleteButtonClickHandler = () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this post - From: ${announcement.from} To: ${announcement.to} at: ${announcement.date}`)
@@ -24,12 +28,14 @@ export default function ViewModeCurrentAnn(announcement) {
     const subscribeForTraveling = async () => {
         const announcementId = announcement._id;
         // navigate(`/announcements/${announcement._id}`)
-        return await announcementService.subscribe(announcementId);
+        setIsReservedState(!isReservedState)
+        return announcementService.subscribe(announcementId);
+        
     }
 
     const { onSubmit } = useForm(subscribeForTraveling) // values, onChange,
 
-    const isReserved = announcement?.subscribers?.includes(userId);
+    // const isReserved = announcement?.subscribers?.includes(userId);
 
     return(
         <div className="p-10 mb-12 flex-nowrap no-scrollbar flex items-center justify-center opacity-90">

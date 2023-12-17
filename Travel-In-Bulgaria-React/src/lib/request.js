@@ -1,4 +1,4 @@
-const buildOptions = (data, userId, announcementId) => {
+const buildOptions = (data, userId, announcementId, commentId) => {
 
     const options = {};
 
@@ -24,6 +24,13 @@ const buildOptions = (data, userId, announcementId) => {
         }
     }
 
+    if (commentId) {
+        options.headers = {
+            ...options.headers,
+            'commentId' : commentId
+        }
+    }
+
     const token = localStorage.getItem('accessToken')
     if(token){
         options.headers = {
@@ -35,9 +42,9 @@ const buildOptions = (data, userId, announcementId) => {
     return options;
 }
 
-const request = async (method, url, data, userId, announcementId) => {
+const request = async (method, url, data, userId, announcementId, commentId) => {
     const response = await fetch(url, {
-        ...buildOptions(data, userId, announcementId),
+        ...buildOptions(data, userId, announcementId, commentId),
         method
     });
     if (response.status === 204) {

@@ -43,7 +43,7 @@ export default function EditModeCurrentAnn(){
 
         try {
             await announcementService.edit(announcementId, announcementData);
-            navigate('/announcements')
+            navigate(`/announcements/${announcementId}`)
         } catch (error) {
             console.log(error);
         }

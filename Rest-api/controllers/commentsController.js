@@ -5,7 +5,7 @@ function newComment(text, userId, announcementId) {
         .then(comment => {
             return Promise.all([
                 userModel.updateOne({ _id: userId }, { $push: { comments: comment._id }, $addToSet: { announcements: announcementId } }),
-                announcementModel.findByIdAndUpdate({ _id: announcementId }, { $push: { comments: comment._id }, $addToSet: { subscribers: userId } }, { new: true }),
+                announcementModel.findByIdAndUpdate({ _id: announcementId }, { $push: { comments: comment._id } }, { new: true }), //$addToSet: { subscribers: userId }
             ])
         })
 }
@@ -29,7 +29,7 @@ function createComment(req, res, next) {
     const  commentText  = req.body.comment;
 console.log('createComment');
     newComment(commentText, userId, announcementId)
-        .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement))
+        .then(([_, updatedAnnouncement]) => res.status(200).json(updatedAnnouncement)) 
         .catch(next);
 }
 
@@ -52,22 +52,21 @@ function editComment(req, res, next) {
 }
 
 function deleteComment(req, res, next) {
-    const { commentId, announcementId } = req.params;
-    const { _id: userId } = req.user;
-
+    const { commentid, announcementid, userid } = req.headers;
+    // const { _id: userId } = req.user;
     Promise.all([
-        commentModel.findOneAndDelete({ _id: commentId, userId }),
-        userModel.findOneAndUpdate({ _id: userId }, { $pull: { comments: commentId } }),
-        announcementModel.findOneAndUpdate({ _id: announcementId }, { $pull: { comments: commentId } }),
+        commentModel.findOneAndDelete({ _id: commentid, userid }),
+        userModel.findOneAndUpdate({ _id: userid }, { $pull: { comments: commentid } }),
+        announcementModel.findOneAndUpdate({ _id: announcementid }, { $pull: { comments: commentid } }),
     ])
-        .then(([deletedOne, _, __]) => {
-            if (deletedOne) {
-                res.status(200).json(deletedOne)
-            } else {
-                res.status(401).json({ message: `Not allowed!` });
-            }
-        })
-        .catch(next);
+        // .then(([deletedOne, _, __]) => {
+        //     if (deletedOne) {
+        //         res.status(200).json(deletedOne)
+        //     } else {
+        //         res.status(401).json({ message: `Not allowed!` });
+        //     }
+        // })
+        // .catch(next);
 }
 
 function like(req, res, next) {

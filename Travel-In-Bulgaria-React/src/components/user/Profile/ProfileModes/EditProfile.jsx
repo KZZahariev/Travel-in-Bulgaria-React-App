@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
 import * as authService from "../../../../services/authService"
 import { editProfileSchema } from "../../../../schemas";
+import AuthContext from "../../../../contexts/authContext";
 
 const EditProfileFormKeys = {
     Username: 'username',
@@ -18,7 +19,8 @@ const EditProfile = () => {
         email: ''
     });
 
-    const { userId } = useParams()
+    // const {  } = useParams()
+    const { userId } = useContext(AuthContext)
 
     useEffect(() => {
         authService.getUserInfo()

@@ -11,3 +11,8 @@ export const getAll = async (announcementId) => {
     const result = await request.get(`${baseUrl}/comments`,  announcementId);
     return result
 }
+
+export const del = async (commentData, userId, announcementId, commentId) => {
+    const result = await request.del(`${baseUrl}/comments`, commentData, userId, announcementId, commentId);
+    return result
+}
