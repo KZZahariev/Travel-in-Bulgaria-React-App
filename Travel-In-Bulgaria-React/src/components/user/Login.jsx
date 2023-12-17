@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom"
 import { useFormik } from "formik";
 
+import styles from "./Login.module.css"
+
 import AuthContext from "../../contexts/authContext";
 import { loginSchema } from "../../schemas/index";
 
@@ -38,12 +40,12 @@ export default function Login() {
         onChange
     })
     return(
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">
-                <h2 className="text-slate-100 text-2xl font-semibold mb-4">Login</h2>
+        <div className={styles["login-main-div"]}>
+            <div className={styles["login-second-div"]}>
+                <h2 className={styles["login-h2"]}>Login</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-500 text-sm font-medium">Email</label>
+                    <div className={styles["login-form-div"]}>
+                        <label htmlFor="email" className={styles["login-form-label"]}>Email</label>
                         <input 
                             type="email"
                             id="email" 
@@ -51,19 +53,19 @@ export default function Login() {
                             value={values[RegisterFormKeys.Email]} 
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={errors.email && touched.email ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}>
+                            className={errors.email && touched.email ? styles["login-form-input-errors"] : styles["login-form-input"]}>
                         </input>
                         {errors.email && touched.email && (
                                 <>
-                                    <p className="text-red-500" >
+                                    <p className={styles["login-errors"]} >
                                       {errors.email}
                                     </p>
                                 </>
                             )}
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-gray-500 text-sm font-medium">Password</label>
+                    <div className={styles["login-form-div"]}>
+                        <label htmlFor="password" className={styles["login-form-label"]}>Password</label>
                         <input 
                             type="password" 
                             id="password" 
@@ -71,11 +73,11 @@ export default function Login() {
                             value={values[RegisterFormKeys.Password]} 
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className={errors.password && touched.password ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}>
+                            className={errors.email && touched.email ? styles["login-form-input-errors"] : styles["login-form-input"]}>
                         </input>
                             {errors.password && touched.password && (
                                 <>
-                                    <p className="text-red-500" >
+                                    <p className={styles["login-errors"]} >
                                       {errors.password}
                                     </p>
                                 </>
@@ -85,8 +87,8 @@ export default function Login() {
                     <button type="submit"
                         className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Login</button>
                 </form>
-                <p className="text-sm text-gray-500 mt-4">Don&apos;t have an account? <a
-                        className="text-blue-500 hover:text-blue-600"><Link to={'/auth/register'}>Register</Link></a></p>
+                <p className={styles["login-p"]}>Don&apos;t have an account?<a
+                        className={styles["login-a"]}><Link to={'/auth/register'}>Register</Link></a></p>
             </div>
         </div>
     )

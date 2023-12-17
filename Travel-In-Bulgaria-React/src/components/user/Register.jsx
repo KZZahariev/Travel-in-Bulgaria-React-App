@@ -3,6 +3,8 @@ import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { useFormik } from "formik";
 
+import styles from "./Register.module.css"
+
 import AuthContext  from "../../contexts/authContext";
 import { registerSchema } from "../../schemas/index";
 
@@ -45,12 +47,12 @@ export default function Register() {
     //     setUserValue(e.target.value)
     // }
       return (
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="bg-gray-800 p-8 shadow-md rounded-md w-96">
-              <h2 className="text-slate-100 text-2xl font-semibold mb-4">Register</h2>
+          <div className={styles["register-first-div"]}>
+            <div className={styles["register-second-div"]}>
+              <h2 className={styles["register-h2"]}>Register</h2>
               <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <label htmlFor="username" className="block text-gray-500 text-sm font-medium">Username</label>
+                <div className={styles["register-form-div"]}>
+                  <label htmlFor="username" className={styles["register-form-label"]}>Username</label>
                   <input 
                       type="text"
                       id="username"
@@ -58,12 +60,12 @@ export default function Register() {
                       values={values[RegisterFormKeys.Username]}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={errors.username && touched.username ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
+                      className={errors.username && touched.username ? styles["register-form-input-errors"] : styles["register-form-input"]}
                         />
                 {/* username validation  */}
                 {errors.username && touched.username && (
                     <>
-                        <p className="text-red-500">
+                        <p className={styles["register-errors"]}>
                           {errors.username}
                         </p>
                     </>
@@ -71,7 +73,7 @@ export default function Register() {
                 </div>
 
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-gray-500 text-sm font-medium">Email</label>
+                  <label htmlFor="email" className={styles["register-form-label"]}>Email</label>
                   <input 
                       type="email"
                       id="email"
@@ -79,12 +81,12 @@ export default function Register() {
                       values={values[RegisterFormKeys.Email]}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={errors.email && touched.email ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
+                      className={errors.email && touched.email ? styles["register-form-input-errors"] : styles["register-form-input"]}
                         />
                 {/* Email validation  */}
                 {errors.email && touched.email && (
                     <>
-                        <p className="text-red-500" >
+                        <p className={styles["register-errors"]}>
                           {errors.email}
                         </p>
                     </>
@@ -92,7 +94,7 @@ export default function Register() {
                 </div>
 
                   <div className="mb-4">
-                    <label htmlFor="password" className="block text-gray-500 text-sm font-medium">Password</label>
+                    <label htmlFor="password" className={styles["register-form-label"]}>Password</label>
                     <input 
                         type="password"
                         id="password"
@@ -101,12 +103,11 @@ export default function Register() {
                         values={values[RegisterFormKeys.Password]} 
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={errors.password && touched.password ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
-                        />
+                        className={errors.password && touched.password ? styles["register-form-input-errors"] : styles["register-form-input"]}/>
                   {/* <!-- Password validator --> */}
                   {errors.password && touched.password && (
                       <>
-                            <p className="text-red-500" >
+                            <p className={styles["register-errors"]}>
                                 {errors.password}
                             </p>
                         </>
@@ -114,7 +115,7 @@ export default function Register() {
                   </div>
 
                   <div className="mb-4">
-                    <label htmlFor="rePassword" className="block text-gray-500 text-sm font-medium">Confirm Password</label>
+                    <label htmlFor="rePassword" className={styles["register-form-label"]}>Confirm Password</label>
                     <input 
                         type="password"
                         id="rePassword"
@@ -123,25 +124,21 @@ export default function Register() {
                         values={values[RegisterFormKeys.RePassword]} 
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        className={errors.rePassword && touched.rePassword ? "border-2 border-rose-500 mt-1 block w-full rounded-md  focus:bg-white focus:ring-0" : "mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"}
-                        />
+                        className={errors.rePassword && touched.rePassword ? styles["register-form-input-errors"] : styles["register-form-input"]}/>
                   {/* Confirm password validation  */}
                     {errors.rePassword && touched.rePassword && (
                         <>
-                            <p className="text-red-500" >
+                            <p className={styles["register-errors"]}>
                               {errors.rePassword}
                               </p>
                         </>
                     )}
                   </div>
-
-
-
                 <button type="submit"
                   className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Register</button>
               </form>
-              <p className="text-sm text-gray-500 mt-4">Already have an account? 
-              <a className="text-blue-500 hover:text-blue-600"><Link to={'/auth/login'}> Login</Link></a></p>
+              <p className={styles["register-p"]}>Already have an account? 
+              <a className={styles["register-a"]}><Link to={'/auth/login'}> Login</Link></a></p>
             </div>
           </div>
       )

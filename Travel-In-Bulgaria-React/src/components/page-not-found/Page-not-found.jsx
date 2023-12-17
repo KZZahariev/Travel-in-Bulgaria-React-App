@@ -19,4 +19,4 @@ export default function PageNotFound() {
             </button></Link>
         </main>
     )
-};
+}
