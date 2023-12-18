@@ -16,7 +16,6 @@ export const register = async (email, username, password, rePassword) => {
         email,
         username,
         password,
-        //accessToken - moje da mu podadem
     });
     return result; 
 };

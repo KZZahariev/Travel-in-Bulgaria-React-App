@@ -41,7 +41,6 @@ export default function AddComment() {
                             type:'ADD_COMMENT',
                             payload: Object.entries(result.comments).pop()[1]
                         })
-                        // console.log(Object.entries(result.comments).pop()[1]);
                     });
                 resetForm()
             } catch (error) {
@@ -63,23 +62,17 @@ export default function AddComment() {
         validationSchema: addCommentSchema,
         onSubmit,
         onChange,
-        // enableReinitialize: true
     });
 
     const commentData = ''
-    // const comments = announcement.comments
 
     async function deleteCommentClickHandler(commentId) {
         const hasConfirmed = confirm(`Are you sure you want to delete this comment`)
-            // dispatch({
-            //     type:'DELETE_COMMENT',
-            //     payload: comment // Object.entries(result.comments).pop()[1]
-            // })
+            
 
         if (hasConfirmed) {
             commentService.del(commentData, userId, announcementId, commentId)  
             
-            // navigate('/announcements')
             announcementService.getOne(announcementId)
                     .then((result) => {
                         let deletedComment = {}
@@ -92,7 +85,6 @@ export default function AddComment() {
                             type:'DELETE_COMMENT',
                             payload: deletedComment
                         })
-                        // console.log(Object.entries(result.comments).pop()[1]);
                     });
         }
     }

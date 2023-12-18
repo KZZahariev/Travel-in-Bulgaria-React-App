@@ -13,14 +13,11 @@ export const AuthProvider = ({
     children
 }) => {
     const navigate = useNavigate();
-    const [auth, setAuth] = usePersistedState('auth', {}) //auth //accessToken
+    const [auth, setAuth] = usePersistedState('auth', {});
 
     const registerSubmitHandler = async (values) => {
         const result = await authService.register(values.email, values.username, values.password, values.rePassword);
 
-        // setAuth(result);
-
-        // localStorage.setItem('accessToken', result._id); //must fix accessToken!!!!!!!!!!!!!!!!!1
         navigate('/auth/login')
     }
     

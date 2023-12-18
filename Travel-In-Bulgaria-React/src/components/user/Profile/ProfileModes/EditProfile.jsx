@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 
 import * as authService from "../../../../services/authService"
@@ -13,14 +13,12 @@ const EditProfileFormKeys = {
 
 const EditProfile = () => {
 
-    // const navigate = useNavigate();
     const { editProfileHandler } = useContext(AuthContext);
     const [user, setUser] = useState({
         username: '',
         email: ''
     });
 
-    // const {  } = useParams()
     const { userId } = useContext(AuthContext)
 
     useEffect(() => {
@@ -32,12 +30,6 @@ const EditProfile = () => {
         const userData = e;
 
         await editProfileHandler(userData)
-        // try {
-        //     await authService.editUserInfo(userData)
-        //     navigate('/users/profile')
-        // } catch (error) {
-        //     console.log(error);
-        // }
     }
 
     const onChange = (e) => {

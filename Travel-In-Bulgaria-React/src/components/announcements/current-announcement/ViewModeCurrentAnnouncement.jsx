@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom" 
 import AuthContext from "../../../contexts/authContext";
 import * as announcementService from "../../../services/announcementService"
-import useForm from "../../../hooks/useForm";
 import AddComment from "../../comments/AddComment";
-import announcementReducer from "./announcementReducer";
 
 export default function ViewModeCurrentAnn({
     announcement,
@@ -14,10 +12,8 @@ export default function ViewModeCurrentAnn({
 
     const navigate = useNavigate();
     const { isAuthenticated, userId } = useContext(AuthContext);
-    // const [isReserved, dispatch] = useReducer(announcementReducer, []);
     const isOwner = announcement.userId === userId;
     const comments = announcement.comments;
-    // const isReserved = announcement?.subscribers?.includes(userId);
     const [isReservedState, setIsReservedState] = useState(isReserved);
 
     useEffect(() => {
@@ -34,13 +30,11 @@ export default function ViewModeCurrentAnn({
     }
     const subscribeForTraveling = async () => {
         const announcementId = announcement._id;
-        // navigate(`/announcements/${announcement._id}/modal`)
         setIsReservedState(!isReservedState)
         return await announcementService.subscribe(announcementId);
         
     }
 
-    // const { onSubmit } = useForm(subscribeForTraveling) // values, onChange,
 
     return(
         <div className="p-10 mb-12 flex-nowrap no-scrollbar flex items-center justify-center opacity-90">

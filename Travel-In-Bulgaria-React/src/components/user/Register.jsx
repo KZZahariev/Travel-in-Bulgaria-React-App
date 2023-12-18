@@ -43,9 +43,7 @@ export default function Register() {
       onSubmit,
       onChange
     })
-    // const changeSubmitHandler = (e) => {
-    //     setUserValue(e.target.value)
-    // }
+  
       return (
           <div className={styles["register-first-div"]}>
             <div className={styles["register-second-div"]}>

@@ -39,7 +39,6 @@ export default function EditModeCurrentAnn(){
     const onSubmit = async (e) => {
 
         const announcementData = e;
-        // const values = Object.fromEntries(new FormData(e.currentTarget));
 
         try {
             await announcementService.edit(announcementId, announcementData);
@@ -70,7 +69,6 @@ export default function EditModeCurrentAnn(){
         onChange,
         enableReinitialize: true
     });
-    // const { values, onChange, onSubmit } = useForm(editAnnouncementSubmitHandler, announcement)
     return(
         <div className="min-h-screen flex items-center justify-center opacity-90">
             {isLoading ? <Spinner /> : (
