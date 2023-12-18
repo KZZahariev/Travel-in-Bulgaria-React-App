@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import * as announcementService from "../../services/announcementService"
 // import * as commentService from "../../services/commentService"
-import ViewModeCurrentAnn from "./current-announcement/viewModeCurrentAnnouncement";
+import ViewModeCurrentAnn from "./current-announcement/ViewModeCurrentAnnouncement";
 import AuthContext from "../../contexts/authContext";
 // import reducer from "./commentReducer";
 
