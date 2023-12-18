@@ -1,6 +1,8 @@
 import * as request from '../lib/request';
 
-const baseUrl = 'http://localhost:3000/api';
+// const baseUrl = 'http://localhost:3000/api';
+const baseUrl = 'https://travelinbulgaria-kz-react.onrender.com';
+
 
 export const create = async (commentData, userId, announcementId) => {
     const result = await request.post(`${baseUrl}/comments`, commentData, userId, announcementId);

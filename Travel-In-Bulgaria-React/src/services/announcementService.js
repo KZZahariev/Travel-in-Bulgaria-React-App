@@ -1,6 +1,7 @@
 import * as request from '../lib/request';
 
-const baseUrl = 'http://localhost:3000/api';
+// const baseUrl = 'http://localhost:3000/api';
+const baseUrl = 'https://travelinbulgaria-kz-react.onrender.com';
 
 export const getAll = async () => {
     const result = await request.get(`${baseUrl}/announcements`);
