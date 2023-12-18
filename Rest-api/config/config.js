@@ -9,7 +9,7 @@ const config = {
     production: {
         port: process.env.PORT || 3000,
         dbURL: 'mongodb+srv://KZZahariev:Paris9602@travel-in-bulgaria.0tvahgf.mongodb.net/?retryWrites=true&w=majority', //process.env.DB_URL_CREDENTIALS, //
-        origin: ['https://exam-angular-june-2023.vercel.app'] //'http://localhost:5555', 'http://localhost:4200',
+        origin: ['https://travel-in-bulgaria-react-app-kbx9.vercel.app/'] //'http://localhost:5555', 'http://localhost:4200',
     }
 };
 
