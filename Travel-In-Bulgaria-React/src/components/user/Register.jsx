@@ -18,7 +18,7 @@ const RegisterFormKeys = {
 
 export default function Register() {
     const [ reg, setReg ] = useState({});
-
+    const [serverError, setServerError] = useState('');
     const { registerSubmitHandler } = useContext(AuthContext);
     
     const onChange = (e) => {
@@ -29,7 +29,11 @@ export default function Register() {
     };
 
     const onSubmit = async (values) => {
+      try {
         await registerSubmitHandler(values)
+      } catch (error) {
+        setServerError(error.message);
+      }
     }
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -48,6 +52,11 @@ export default function Register() {
           <div className={styles["register-first-div"]}>
             <div className={styles["register-second-div"]}>
               <h2 className={styles["register-h2"]}>Register</h2>
+              {serverError && (
+                    <div className={styles['error-message-wrapper']}>
+                        <p className={styles['error-message']}>Login failed: {serverError}</p>
+                    </div>
+                )}
               <form onSubmit={handleSubmit}>
                 <div className={styles["register-form-div"]}>
                   <label htmlFor="username" className={styles["register-form-label"]}>Username</label>

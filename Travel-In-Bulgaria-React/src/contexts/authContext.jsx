@@ -34,13 +34,9 @@ export const AuthProvider = ({
     }
 
     const editProfileHandler = async (userData) => {
-        try {
             let res = await authService.editUserInfo(userData)
             setAuth(res);
             navigate('/users/profile')
-        } catch (error) {
-            console.log(error);
-        }
     } 
 
     const authenticated = localStorage.getItem('accessToken')

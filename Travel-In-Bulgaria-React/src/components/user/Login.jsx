@@ -17,6 +17,7 @@ export default function Login() {
 
     const { loginSubmitHandler } = useContext(AuthContext);
     const { logState, setLogState } = useState({})
+    const [serverError, setServerError] = useState('');
 
     const onChange = (e) => {
         setLogState(state => ({
@@ -26,8 +27,11 @@ export default function Login() {
     };
 
      const onSubmit = async (values) => {
-
-        await loginSubmitHandler(values)
+        try {
+            await loginSubmitHandler(values)
+        } catch (error) {
+            setServerError(error.message);
+        }
     }
 
     const { values, errors, touched, handleBlur, handleSubmit, handleChange, } = useFormik({
@@ -43,6 +47,11 @@ export default function Login() {
         <div className={styles["login-main-div"]}>
             <div className={styles["login-second-div"]}>
                 <h2 className={styles["login-h2"]}>Login</h2>
+                {serverError && (
+                    <div className={styles['error-message-wrapper']}>
+                        <p className={styles['error-message']}>Login failed: {serverError}</p>
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
                     <div className={styles["login-form-div"]}>
                         <label htmlFor="email" className={styles["login-form-label"]}>Email</label>

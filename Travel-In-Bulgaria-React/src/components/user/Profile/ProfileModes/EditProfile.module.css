@@ -1,0 +1,12 @@
+.error-message-wrapper {
+    background-color: #df1b1b;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    animation: 1s alternate show-up;
+}
+
+.error-message {
+    font-size: 0.8em;
+    color: #0f0303;
+}

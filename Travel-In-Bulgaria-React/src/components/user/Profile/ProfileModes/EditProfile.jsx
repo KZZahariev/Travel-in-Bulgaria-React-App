@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 
+import styles from "./EditProfile.module.css"
+
 import * as authService from "../../../../services/authService"
 import { editProfileSchema } from "../../../../schemas";
 import AuthContext from "../../../../contexts/authContext";
@@ -18,7 +20,7 @@ const EditProfile = () => {
         username: '',
         email: ''
     });
-
+    const [serverError, setServerError] = useState('');
     const { userId } = useContext(AuthContext)
 
     useEffect(() => {
@@ -28,8 +30,11 @@ const EditProfile = () => {
 
     const onSubmit = async (e) => {
         const userData = e;
-
-        await editProfileHandler(userData)
+        try {
+            await editProfileHandler(userData)
+        } catch (error) {
+            setServerError(error.message);
+        }
     }
 
     const onChange = (e) => {
@@ -50,9 +55,13 @@ const EditProfile = () => {
         onChange,
         enableReinitialize: true
     });
-
     return (
     <div className="bg-cover flex flex-col min-h-screen bg-fixed bg-[url(./assets/road-mountains-tarmac-sunrise-morning-macos-big-sur-stock-5k-7680x4320-3996.jpg)]">
+            {serverError && (
+                    <div className={styles['error-message-wrapper']}>
+                        <p className={styles['error-message']}>Change info failed: {serverError}</p>
+                    </div>
+                )}
         <div className="transform transition-all hover:scale-105 max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
             <div className="rounded-t-lg h-32 overflow-hidden">
                 <img className="object-cover object-top w-full"
