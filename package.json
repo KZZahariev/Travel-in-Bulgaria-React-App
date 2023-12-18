@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/KZZahariev/Travel-in-Bulgaria-React-App/issues"
   },
-  "homepage": "https://github.com/KZZahariev/Travel-in-Bulgaria-React-App#readme"
+  "homepage": "https://github.com/KZZahariev/Travel-in-Bulgaria-React-App#readme",
+  "engines": {
+    "node": ">=16.15.0 <19.0.0"
+  }
 }
