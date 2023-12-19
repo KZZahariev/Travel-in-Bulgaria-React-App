@@ -18,7 +18,7 @@ export default function AddComment() {
     const [addComment, setAddComment] = useState([])
     const [comments, dispatch] = useReducer(reducer, []);
     const { announcementId } = useParams();
-    const { userId, } = useContext(AuthContext)
+    const { userId, isAuthenticated } = useContext(AuthContext)
 
     useEffect(() => {
         announcementService.getOne(announcementId)
@@ -95,8 +95,9 @@ export default function AddComment() {
         <div className="container mx-auto p-4">
 
         <section className="bg-gray-400 p-6 rounded-lg shadow-md">
+            {isAuthenticated && (
+                <>
             <h3 className="text-l font-bold mb-4">Add comment</h3>
-
             <form onSubmit={handleSubmit} className="mb-4">
                 <div className="mb-4">
                     <label htmlFor="comment" className="block text-gray-600 font-semibold">Comment</label>
@@ -118,6 +119,8 @@ export default function AddComment() {
                 </div>
                 <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Add comment</button>
             </form>
+            </>
+            )}
 
             {/* <!-- Comments --> */}
             <h3 className="text-l font-bold mb-4">Comments</h3>
