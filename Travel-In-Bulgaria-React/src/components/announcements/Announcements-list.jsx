@@ -14,9 +14,10 @@ export default function AnnouncementList() {
       .finally(()=> setIsLoading(false))
   }, []);
   return (
+    <>
+    {isLoading && <Spinner />}
     <div className="bg-cover flex flex-col min-h-screen bg-fixed bg-[url(./assets/asphalt-highway.jpg)]">
       <div className="grid grid-cols-1 md:grid-cols-3 pt-5 m-6  opacity-90">
-          {isLoading && <Spinner />}
           {announcements.map((announcement) => (
             <AnnouncementsListItem key={announcement._id} {...announcement} />
           ))}
@@ -26,5 +27,6 @@ export default function AnnouncementList() {
           )}
         </div>
       </div>
+    </>
   );
 }
