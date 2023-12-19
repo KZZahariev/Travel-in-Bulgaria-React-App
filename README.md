@@ -24,7 +24,7 @@ This is my first single page application with React. The application aims to fac
 
 ## Deployment
 This application is deployed via render.com and vercel.com
-### You can access it here -> [https://exam-angular-june-2023.vercel.app/home](https://travel-in-bulgaria-react-app-kbx9.vercel.app/)
+### You can access it here -> (https://travel-in-bulgaria-react-app-kbx9.vercel.app/)
 - You can view it as a guest or you can register.
 - If you don't want to register you can check it out with one of the following profiles:
 
